@@ -1,5 +1,9 @@
-.bg-brown {
-    color: red;
+.blue {
+    background-color: blue;
+}
+
+.text-blue {
+    color: blue;
 }
 
 .myButton {
