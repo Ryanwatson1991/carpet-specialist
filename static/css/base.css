@@ -24,6 +24,15 @@ html {
     margin-bottom: 1%;
 }
 
+.box{
+    border-style: solid;
+    border-color:#A6998F;
+    margin-top: 8%;
+    margin-bottom: 8%;
+    padding: 5%;
+    color: #A6998F;
+}
+
 .myButton {
 	background-color:#262425;
 	border-radius:11px;
@@ -43,4 +52,11 @@ html {
 .myButton:active {
 	position:relative;
 	top:1px;
+}
+
+footer{
+    background-color: #262425;
+    padding: 2%;
+    font-family: 'Raleway', sans-serif;
+    color: #f2f2f2;
 }
