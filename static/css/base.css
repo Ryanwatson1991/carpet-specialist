@@ -1,9 +1,18 @@
+html {
+    height: 100%;
+}
+
 body {
     background-color: #F2F2F2;
 }
 
 .brown {
     background-color: #A6998F;
+    height: 100%;
+}
+
+.black {
+    background-color: #262425;
 }
 
 .text-white {
