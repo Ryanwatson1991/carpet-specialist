@@ -1,9 +1,13 @@
-.blue {
-    background-color: blue;
+body {
+    background-color: #F2F2F2;
 }
 
-.text-blue {
-    color: blue;
+.brown {
+    background-color: #A6998F;
+}
+
+.text-white {
+    color: #F2F2F2;
 }
 
 .myButton {
