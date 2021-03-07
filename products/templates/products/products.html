@@ -18,5 +18,31 @@
                 {{ products }}
             </div>
         </div>
+        <div class="row">
+            {% for product in products %}
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card h-100">
+                    {% if product.image %}
+                        <a href="">
+                            <img class="card-img-top img-fluid" src="{{ product.image }}" alt="{{ product.name }}">
+                        </a>
+                        {% else %}
+                        <a href="">
+                            <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}logo-3.png" alt="{{ product.name }}">
+                        </a>
+                    {% endif %}
+                    <div class="card-body">
+                        <h4 class="card-title">
+                        <a href="#">{{ product.name }}</a>
+                        </h4>
+                        <h5>£{{ product.price }} M²</h5>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                    </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}
