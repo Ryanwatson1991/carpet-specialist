@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Product
+from .models import Product, Colour
 
 # Create your views here.
+
 
 def all_products(request):
     """A view that shows all products"""
@@ -19,14 +20,11 @@ def product_detail(request, product_id):
     """ A view to show individual product details """
 
     product = get_object_or_404(Product, pk=product_id)
+    colours = Colour.objects.all()
 
     context = {
         'product': product,
+        'colours': colours,
     }
 
-<<<<<<< HEAD
     return render(request, 'products/product_detail.html', context)
-=======
-    return render(request, 'products/product_detail.html', context)
-
->>>>>>> fe5eecf668782daa0272b2d977ef857dcd7fea50
