@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col">
+                
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+
+        <div class="col">
+
+            <div class="card mt-4">
+                <div class="card-img-top img-fluid"> 
+                    {% if product.image %}
+                        {% if colour %}
+                            <a href="{{ colour.image.url }}" target="_blank">
+                                <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
+                            </a>
+                        {% else %}
+                            <a href="{{ product.image.url }}" target="_blank">
+                                <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
+                            </a>
+                            {% endif %}
+                        {% else %}
+                        <a href="">
+                            <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}logo-3.png" alt="{{ product.name }}">
+                        </a>
+                    {% endif %}
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">{{ product.name }}</h3>
+                    <h4>£<span id="price">{{ product.price }}</span>M²</h4>
+                    <p class="card-text">{{ product.description }}</p>
+                    <select class="form-select form-select-lg form-control mb-3" name="genre_name" id="genre_name"
+                        aria-label="genre_name">
+                        <option selected disabled>Pick a Colour</option>
+                        <option value="{{ product.colour }}">{{ product.colour }}</option>
+                    </select>
+                    <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+                    4.0 stars
+                    <div class="card-body">
+                        <form>
+                            <h5>Price Calculator</h5>
+                            <h6>Enter size below</h6>
+                            <h6>length(Metres)</h6>
+                            <input type="number" id="length"/>
+                            <h6>width(Metres)</h6>
+                            <select id="width" class="form-select form-select-lg form-control mb-3" name="genre_name" id="genre_name"
+                                aria-label="genre_name">
+                                <option selected disabled>Choose width</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                            <input type="button" onClick="multiplyBy()" Value="Calculate total cost" />
+                            <h6>Total Area</h6>
+                            £<span id = "area"></span>
+                            <h6>Total Price</h6>
+                            <span id = "total_cost"></span>
+                        </form>
+                    </div>
+                </div>
+            </div>
+           
+            <!--
+            <div class="card card-outline-secondary my-4">
+            <div class="card-header">
+                Product Reviews
+            </div>
+            <div class="card-body">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
+                <small class="text-muted">Posted by Anonymous on 3/1/17</small>
+                <hr>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
+                <small class="text-muted">Posted by Anonymous on 3/1/17</small>
+                <hr>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
+                <small class="text-muted">Posted by Anonymous on 3/1/17</small>
+                <hr>
+                <a href="#" class="btn btn-success">Leave a Review</a>
+            </div>
+            </div>
+            -->
+        </div>
+    </div>
+
+</div>
+{% endblock %}
