@@ -24,4 +24,9 @@ def product_detail(request, product_id):
         'product': product,
     }
 
+<<<<<<< HEAD
     return render(request, 'products/product_detail.html', context)
+=======
+    return render(request, 'products/product_detail.html', context)
+
+>>>>>>> fe5eecf668782daa0272b2d977ef857dcd7fea50

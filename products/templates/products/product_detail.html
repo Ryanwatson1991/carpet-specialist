@@ -19,6 +19,7 @@
             <div class="card mt-4">
                 <div class="card-img-top img-fluid"> 
                     {% if product.image %}
+<<<<<<< HEAD
                         {% if colour %}
                             <a href="{{ colour.image.url }}" target="_blank">
                                 <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
@@ -28,6 +29,11 @@
                                 <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
                             </a>
                             {% endif %}
+=======
+                        <a href="{{ product.image.url }}" target="_blank">
+                            <img class="card-img-top img-fluid" src="{{ product.image }}" alt="{{ product.name }}">
+                        </a>
+>>>>>>> fe5eecf668782daa0272b2d977ef857dcd7fea50
                         {% else %}
                         <a href="">
                             <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}logo-3.png" alt="{{ product.name }}">
@@ -36,6 +42,7 @@
                 </div>
                 <div class="card-body">
                     <h3 class="card-title">{{ product.name }}</h3>
+<<<<<<< HEAD
                     <h4>£<span id="price">{{ product.price }}</span>M²</h4>
                     <p class="card-text">{{ product.description }}</p>
                     <select class="form-select form-select-lg form-control mb-3" name="genre_name" id="genre_name"
@@ -65,6 +72,12 @@
                             <span id = "total_cost"></span>
                         </form>
                     </div>
+=======
+                    <h4>£{{ product.price }} M²</h4>
+                    <p class="card-text">{{ product.description }}</p>
+                    <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+                    4.0 stars
+>>>>>>> fe5eecf668782daa0272b2d977ef857dcd7fea50
                 </div>
             </div>
            
