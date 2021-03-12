@@ -18,25 +18,27 @@
 
             <div class="card mt-4">
                 <div class="card-img-top img-fluid"> 
-                    <span id="default-img">
-                        {% if product.image %}
-                            <a href="{{ product.image.url }}" target="_blank">
-                                <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
-                            </a>
-                        {% else %}
+                    <span>
+                       <!--{% if product.image %}-->
+                            <div>
+                                <a href="{{ product.image.url }}" target="_blank">
+                                    <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}" id="product-img">
+                                </a>
+                            </div>
+                        <!--{% else %}
                             <a href="">
                                 <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}logo-3.png" alt="{{ product.name }}">
                             </a>
-                        {% endif %}
+                        {% endif %}-->
                     </span>
                     
                     <span id="colour-img">
                         {% for colour in colours %}
-                        <div id="showcolour-{{ colour.id }}" class="myDiv">
-                            <a href="{{ colour.image.url }}" target="_blank">
-                                <img class="card-img-top img-fluid" src="{{ colour.image.url }}" alt="{{ colour.name }}" id="img-colour">
-                            </a>
-                        </div>
+                                <div id="showcolour-{{ colour.id }}" class="myDiv">
+                                    <a href="{{ colour.image.url }}" target="_blank">
+                                        <img class="card-img-top img-fluid" src="{{ colour.image.url }}" alt="{{ colour.name }}" id="img-colour">
+                                    </a>
+                                </div>
                         {% endfor %}
                     </span>
                         
@@ -50,7 +52,9 @@
                         aria-label="genre_name">
                         <option selected disabled>Pick a Colour</option>
                         {% for colour in colours %}
-                            <option value="colour-{{ colour.id }}" class="carpet-colour">{{ colour.friendly_name }}</option>
+                            
+                                <option value="colour-{{ colour.id }}" class="carpet-colour" id="click-{{ colour.id }}">{{ colour.friendly_name }}</option>
+                            
                         {% endfor %}}
                     </select>
                     <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
@@ -70,11 +74,14 @@
                                 <option>4</option>
                                 <option>5</option>
                             </select>
-                            <input type="button" onClick="multiplyBy()" Value="Calculate total cost" />
+                            <input type="button" onClick="multiplyBy()" Value="Calculate total cost" class="myButton"/>
                             <h6>Total Area</h6>
                             <span id = "area"></span>
                             <h6>Total Price</h6>
                             <span id = "total_cost"></span>
+                            <br>
+                            <button class="myButton">Add to Basket</button>
+                            <button class="myButton">Order a sample</button>
                         </form>
                     </div>
                 </div>
@@ -106,5 +113,15 @@
 {% endblock %}
 
 {% block postloadjs %}
-    
+    <script>
+        {% for colour in colours %}
+            $("#showcolour-{{ colour.id }}").hide();
+            //$("#product-img").hide()
+
+            $('#click-{{ colour.id }}').on('click', function() {
+                alert("test");
+                $("#showcolour-{{ colour.id }}").show();
+            });
+        {% endfor %}
+    </script>
 {% endblock %}

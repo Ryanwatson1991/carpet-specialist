@@ -19,13 +19,14 @@ $(document).ready(function(){
     	var demovalue = $(this).val(); 
         $("div.myDiv").hide();
         $("#show"+demovalue).show();
+        $("#product-img").hide();
     });
 });
 
 
-$("#colour-img").hide();
+/*$("#colour-img").hide();
 
 $('.carpet-colour').on('click', function() {
         $("#colour-img").show();
         $("#default-img").hide()
-    });
+    });*/

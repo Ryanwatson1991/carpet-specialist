@@ -2,6 +2,11 @@ html {
     height: 100%;
 }
 
+@media (min-width: 576px){
+.form-inline .input-group {
+    width: 100%;
+}}
+
 .hero {
     background-color: #A6998F;
     padding: 10%;
@@ -17,7 +22,7 @@ html {
 
 .nav-link{
     font-family: 'Raleway', sans-serif;
-    width: 20%;
+    width: 100%;
 }
 
 .main-nav{
@@ -59,4 +64,8 @@ footer{
     padding: 2%;
     font-family: 'Raleway', sans-serif;
     color: #f2f2f2;
+}
+
+.card-img-top{
+    width: 75%;
 }
