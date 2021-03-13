@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q
-from .models import Product, Colour, Category
+from .models import Product, Colour, Category, Style, Material, Backing, Manufacturer
 
 # Create your views here.
 
@@ -11,9 +11,33 @@ def all_products(request):
 
     products = Product.objects.all()
     query = None
-    category = None
+    categories = None
+    styles = None
+    material = None
+    backing = None
+    manufacturer = None
 
     if request.GET:
+        if 'style' in request.GET:
+            styles = request.GET['style'].split(',')
+            products = products.filter(style__name__in=styles)
+            styles = Style.objects.filter(name__in=styles)
+
+        if 'material' in request.GET:
+            materials = request.GET['material'].split(',')
+            products = products.filter(material__name__in=materials)
+            materials = Material.objects.filter(name__in=materials)
+
+        if 'backing' in request.GET:
+            backings = request.GET['backing'].split(',')
+            products = products.filter(backing__name__in=backings)
+            backings = Backing.objects.filter(name__in=backings)
+
+        if 'manufacturer' in request.GET:
+            manufacturers = request.GET['manufacturer'].split(',')
+            products = products.filter(manufacturer__name__in=manufacturers)
+            manufacturers = Manufacturer.objects.filter(name__in=manufacturers)
+
         if 'category' in request.GET:
             categories = request.GET['category'].split(',')
             products = products.filter(category__name__in=categories)
@@ -31,6 +55,8 @@ def all_products(request):
     context = {
         'products': products,
         'search_term' : query,
+        'current_categories': categories,
+        'current_styles': styles,
         
     }
 

@@ -30,7 +30,7 @@ class In_stock(models.Model):
 class Style(models.Model):
 
     class Meta:
-        verbose_name_plural = "Style"
+        verbose_name_plural = "Styles"
 
     name = models.CharField(max_length=254)
     friendly_name = models.CharField(max_length=254, null=True, blank=True)
