@@ -16,8 +16,23 @@ def all_products(request):
     material = None
     backing = None
     manufacturer = None
+    sort = None
+    direction = None
 
     if request.GET:
+        if 'sort' in request.GET:
+            sortkey = request.GET['sort']
+            sort = sortkey
+            if sortkey == 'name':
+                sortkey = 'lower_name'
+                products = products.annotate(lower_name=Lower('name'))
+            
+            if 'direction' in request.GET:
+                direction = request.GET['direction']
+                if direction == 'desc':
+                    sortkey = f'-{sortkey}'
+                products = products.order_by(sortkey)
+
         if 'style' in request.GET:
             styles = request.GET['style'].split(',')
             products = products.filter(style__name__in=styles)
@@ -51,6 +66,8 @@ def all_products(request):
 
             queries = Q(name__icontains=query) | Q(description__icontains=query)
             products = products.filter(queries)
+
+    current_sorting = f'(sort)_(direction)'
 
     context = {
         'products': products,
