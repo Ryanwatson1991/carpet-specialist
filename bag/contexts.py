@@ -14,7 +14,11 @@ def bag_contents(request):
         delivery = 0
         free_delivery_delta = 0
 
-    grand_total = delivery + total
+    # Delivery on this site is a flat cost of £20. Grnd total was rendering as £20 all the time so have added the below else statement to set it to '0'
+    if total: 
+        grand_total = delivery + total
+    else: 
+        grand_total = 0
 
     context={
         'bag_items': bag_items,
