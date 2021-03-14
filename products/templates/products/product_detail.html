@@ -47,7 +47,30 @@
                 <div class="card-body">
                     <h3 class="card-title">{{ product.name }}</h3>
                     <h4>£<span id="price">{{ product.price }}</span>M²</h4>
-                    <p class="card-text">{{ product.description }}</p>
+                        <input type="button" Value="Description" class="myButton" id="description_button"/>
+                        <input type="button" Value="Specification" class="myButton" id="spec_button"/>
+                        <div>
+                            <div id="description">
+                                <p class="card-text">{{ product.description }}</p>
+                            </div>
+                            <div id="specification">
+                                {% if product.category %}
+                                    <p class="card-text" class="spec">Category: {{ product.category}}</p>
+                                {% endif %}
+                                {% if product.style %}
+                                    <p class="card-text" class="spec">Style: {{ product.style }}</p>
+                                {% endif %}
+                                {% if product.material %}
+                                    <p class="card-text" class="spec">Material: {{ product.material }}</p>
+                                {% endif %}
+                                {% if product.backing %}
+                                    <p class="card-text" class="spec">Backing: {{ product.backing }}</p>
+                                {% endif %}
+                                {% if product.manufacturer %}
+                                    <p class="card-text" class="spec">Manufacturer: {{ product.manufacturer }}</p>
+                                {% endif %}
+                            </div>
+                        </div>
                     <select class="form-select form-select-lg form-control mb-3" name="genre_name" id="myselection"
                         aria-label="genre_name">
                         <option selected disabled>Pick a Colour</option>
@@ -86,7 +109,7 @@
                             <h6>Total Price</h6>
                             <span id = "total_cost"></span>
                             <br>
-                            {% if product == 'yes' %}
+                            {% if product.in_stock == 'Yes' %}
                                 <!--<button class="myButton">Add to Basket</button>
                                 <button class="myButton">Order a sample</button>-->
                                 This product is in stock
@@ -128,12 +151,30 @@
     <script>
         {% for colour in colours %}
             $("#showcolour-{{ colour.id }}").hide();
-            //$("#product-img").hide()
 
             $('#click-{{ colour.id }}').on('click', function() {
                 alert("test");
                 $("#showcolour-{{ colour.id }}").show();
             });
         {% endfor %}
+
+
+
+        /* Hide/show Description or specification on Product Detail Page */
+
+        // Hide Specification by default
+        $("#specification").hide();
+        
+        // Show specification and hide description when Specification button is clicked
+        $('#spec_button').on('click', function() {
+                $("#specification").show();
+                $("#description").hide();
+            });
+        
+        // Show description and hide specification when Description button is clicked
+        $('#description_button').on('click', function() {
+                $("#specification").hide();
+                $("#description").show();
+            });
     </script>
 {% endblock %}

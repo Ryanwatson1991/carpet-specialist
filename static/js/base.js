@@ -23,10 +23,18 @@ $(document).ready(function(){
     });
 });
 
+/* Hide/show Description or specification on Product Detail Page */
 
-/*$("#colour-img").hide();
+//Hide Specification by default
 
-$('.carpet-colour').on('click', function() {
-        $("#colour-img").show();
-        $("#default-img").hide()
-    });*/
+$("#specification").hide();
+
+$('#spec_button').on('click', function() {
+        $("#specification").show();
+        $("#description").hide();
+    });
+
+$('#description_button').on('click', function() {
+        $("#specification").hide();
+        $("#description").show();
+    });

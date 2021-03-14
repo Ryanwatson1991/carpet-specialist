@@ -32,6 +32,23 @@
                         </h4>
                         <h5>£{{ product.price }} M²</h5>
                     </div>
+                    <p class="card-text" class="spec">
+                        {% if product.category %}
+                            Category: {{ product.category}}; 
+                        {% endif %}
+                        {% if product.style %}
+                            Style: {{ product.style }}; 
+                        {% endif %}
+                        {% if product.material %}
+                            Material: {{ product.material }}; 
+                        {% endif %}
+                        {% if product.backing %}
+                            Backing: {{ product.backing }}; 
+                        {% endif %}
+                        {% if product.manufacturer %}
+                            Manufacturer: {{ product.manufacturer }};
+                        {% endif %}
+                    </p>
                     <div class="card-footer">
                         <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                     </div>
