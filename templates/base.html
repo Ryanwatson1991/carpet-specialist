@@ -74,13 +74,16 @@
                         </li>
                         <li class="list-inline-item">Contact</li>
                         <li class="list-inline-item">
-                            <p class="my-0">
-                                {% if grand_total %}
-                                    £{{ grand_total|floatformat:2 }}
-                                {% else %}
-                                    £0.00
-                                {% endif %}
-                            </p></li>
+                            <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link" href="{% url 'view_bag' %}">
+                                <p class="my-0">
+                                    {% if grand_total %}
+                                        £{{ grand_total|floatformat:2 }}
+                                    {% else %}
+                                        £0.00
+                                    {% endif %}
+                                </p>
+                            </a>
+                        </li>
                     </ul>
                 </div>
 

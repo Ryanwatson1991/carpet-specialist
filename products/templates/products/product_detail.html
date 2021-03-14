@@ -47,30 +47,6 @@
                 <div class="card-body">
                     <h3 class="card-title">{{ product.name }}</h3>
                     <h4>£<span id="price">{{ product.price }}</span>M²</h4>
-                        <input type="button" Value="Description" class="myButton" id="description_button"/>
-                        <input type="button" Value="Specification" class="myButton" id="spec_button"/>
-                        <div>
-                            <div id="description">
-                                <p class="card-text">{{ product.description }}</p>
-                            </div>
-                            <div id="specification">
-                                {% if product.category %}
-                                    <p class="card-text" class="spec">Category: {{ product.category}}</p>
-                                {% endif %}
-                                {% if product.style %}
-                                    <p class="card-text" class="spec">Style: {{ product.style }}</p>
-                                {% endif %}
-                                {% if product.material %}
-                                    <p class="card-text" class="spec">Material: {{ product.material }}</p>
-                                {% endif %}
-                                {% if product.backing %}
-                                    <p class="card-text" class="spec">Backing: {{ product.backing }}</p>
-                                {% endif %}
-                                {% if product.manufacturer %}
-                                    <p class="card-text" class="spec">Manufacturer: {{ product.manufacturer }}</p>
-                                {% endif %}
-                            </div>
-                        </div>
                     <select class="form-select form-select-lg form-control mb-3" name="genre_name" id="myselection"
                         aria-label="genre_name">
                         <option selected disabled>Pick a Colour</option>
@@ -80,6 +56,34 @@
                             
                         {% endfor %}}
                     </select>
+                    
+                    <!--Buttons to allow toggle between Description & specification display for product-->
+                    <input type="button" Value="Description" class="myButton" id="description_button" />
+                    <input type="button" Value="Specification" class="myButton" id="spec_button" />
+                    
+                    <div>
+                        <div id="description">
+                            <p class="card-text">{{ product.description }}</p>
+                        </div>
+                        <div id="specification">
+                            {% if product.category %}
+                            <p class="card-text" class="spec">Category: {{ product.category.friendly_name }}</p>
+                            {% endif %}
+                            {% if product.style %}
+                            <p class="card-text" class="spec">Style: {{ product.style.friendly_name }}</p>
+                            {% endif %}
+                            {% if product.material %}
+                            <p class="card-text" class="spec">Material: {{ product.material.friendly_name }}</p>
+                            {% endif %}
+                            {% if product.backing %}
+                            <p class="card-text" class="spec">Backing: {{ product.backing.friendly_name }}</p>
+                            {% endif %}
+                            {% if product.manufacturer %}
+                            <p class="card-text" class="spec">Manufacturer: {{ product.manufacturer.friendly_name }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
                     <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
                     4.0 stars
                     
