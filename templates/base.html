@@ -23,6 +23,7 @@
         {% endblock %}
 
         {% block corejs %}
+            <script src="https://kit.fontawesome.com/6629f1558e.js" crossorigin="anonymous"></script>
             <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -39,11 +40,11 @@
         <header class="container-fluid">
             <div id="topnav" class="row">
                 <div class="col-4 my-auto">
-                    <a href="{% url 'home' %}" class="nav-link">
+                    <a href="{% url 'home' %}" class="nav-link logo">
                         <img src="/media/logo-3.jpg" alt="Alex Gibb"> <!--This needs changing to MEDIA_ROOT-->
                     </a>
                 </div>
-                <div class="col-4 my-auto">
+                <div class="col-lg-4 my-auto">
                         <form method="GET" action="{% url 'products' %}" class="form-inline">
                             <div class="input-group" class="searchbar">
                                 <input class="form-control mr-sm-2" type="test" name="q" placeholder="Search" aria-label="Search">
@@ -53,11 +54,14 @@
                             </div>
                         </form>
                 </div>
-                <div class="col-4 my-auto">
-                    <ul class="list-inline text-right my-0">
+                <div class="col-lg-4 my-auto">
+                    <ul class="list-inline text-right my-0 shopping-nav">
                         <li class="list-inline-item dropdown">
                             <a class="nav-link dropdown" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Account
+                                <div class="text-center shopping-icon">
+                                    <i class="fas fa-user-circle fa-lg"></i>  
+                                </div>  
+                                <p class="shopping-icon-text">Account</p>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 {% if request.user.is_authenticated %}
@@ -72,16 +76,18 @@
                                 {% endif %}
                             </div>
                         </li>
-                        <li class="list-inline-item">Contact</li>
                         <li class="list-inline-item">
                             <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link" href="{% url 'view_bag' %}">
-                                <p class="my-0">
-                                    {% if grand_total %}
-                                        £{{ grand_total|floatformat:2 }}
-                                    {% else %}
-                                        £0.00
-                                    {% endif %}
-                                </p>
+                                <div class="text-center shopping-icon">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </div>
+                                    <p class="shopping-icon-text">
+                                        {% if grand_total %}
+                                            £{{ grand_total|floatformat:2 }}
+                                        {% else %}
+                                            £0.00
+                                        {% endif %}
+                                    </p>
                             </a>
                         </li>
                     </ul>
