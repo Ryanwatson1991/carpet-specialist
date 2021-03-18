@@ -7,7 +7,7 @@ function multiplyBy() {
     price = parseFloat(document.getElementById("price").innerHTML);
 
     document.getElementById("area").innerHTML = num1 * num2 + ' M²';
-    document.getElementById("total_cost").innerHTML = '£' + area * price;
+    document.getElementById("selected_cost").innerHTML = '£' + area * price;
 }
 
 

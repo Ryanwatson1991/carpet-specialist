@@ -14,7 +14,7 @@
 {% block content %}
 <div class="container">
 
-        <div class="col">
+    <div class="col">
 
             <div class="card mt-4">
                 <div class="card-img-top img-fluid"> 
@@ -90,14 +90,13 @@
                     
                     <!--Price Calculator - Calculates cost of product based on user selected length & width and then £ per M²-->
                     <div class="card-body">
-                        <form>
                             <h5>Price Calculator</h5>
                             <h6>Enter size below</h6>
                             <h6>length(Metres)</h6>
                             <input type="number" id="length"/>
                             <h6>width(Metres)</h6>
-                            <select id="width" class="form-select form-select-lg form-control mb-3" name="genre_name" id="genre_name"
-                                aria-label="genre_name">
+                            <select id="width" class="form-select form-select-lg form-control mb-3" name="width" id="width"
+                                aria-label="width">
                                 <option selected disabled>Choose width</option>
                                 {% if product.category.name == 'carpets' %}
                                     <option>4</option>
@@ -112,7 +111,8 @@
                             <h6>Total Area</h6>
                             <span id = "area"></span>
                             <h6>Total Price</h6>
-                            <span id = "total_cost"></span>
+                            <span id = "selected_cost"></span>
+                            
                             <br>
                             {% if product.in_stock.name == 'Yes' %}
                                 <form class="form" action="{% url 'add_to_bag' product.id %}" method="POST">
@@ -149,29 +149,7 @@
                     </div>
                 </div>
             </div>
-           
-            <!--
-            <div class="card card-outline-secondary my-4">
-            <div class="card-header">
-                Product Reviews
-            </div>
-            <div class="card-body">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-                <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-                <hr>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-                <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-                <hr>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-                <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-                <hr>
-                <a href="#" class="btn btn-success">Leave a Review</a>
-            </div>
-            </div>
-            -->
-        </div>
     </div>
-
 </div>
 {% endblock %}
 
