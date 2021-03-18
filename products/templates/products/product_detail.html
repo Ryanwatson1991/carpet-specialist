@@ -51,9 +51,10 @@
                         aria-label="genre_name">
                         <option selected disabled>Pick a Colour</option>
                         {% for colour in colours %}
-                            
+                            <!--Loop means dropdown will only show colours who's product field matches up with the durrent product name-->
+                            {% if product.name == colour.product.name %}
                                 <option value="colour-{{ colour.id }}" class="carpet-colour" id="click-{{ colour.id }}">{{ colour.friendly_name }}</option>
-                            
+                            {% endif %}
                         {% endfor %}}
                     </select>
                     
@@ -98,7 +99,7 @@
                             <select id="width" class="form-select form-select-lg form-control mb-3" name="genre_name" id="genre_name"
                                 aria-label="genre_name">
                                 <option selected disabled>Choose width</option>
-                                {% if product.category == 'carpets' %}
+                                {% if product.category.name == 'carpets' %}
                                     <option>4</option>
                                     <option>5</option>
                                 {% else %}
@@ -113,6 +114,7 @@
                             <h6>Total Price</h6>
                             <span id = "total_cost"></span>
                             <br>
+                            {% if product.in_stock.name == 'Yes' %}
                                 <form class="form" action="{% url 'add_to_bag' product.id %}" method="POST">
                                     {% csrf_token %}
                                     <div class="form-row">
@@ -124,16 +126,24 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="col-12">
-                                            <input type="submit" class="btn myButton" value="Add to Basket">
-                                            <!-- <input type="submit" class="btn myButton" value="Order a sample"> -->
+                                            <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 mt-5">
+                                                <span class="icon">
+                                                    <i class="fas fa-chevron-left"></i>
+                                                </span>
+                                                <span class="text-uppercase">Keep Shopping</span>
+                                            </a>
+                                            <input type="submit" class="btn btn-black rounded-0 text-uppercase mt-5" value="Add to Bag">
                                         </div>
                                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
                                     </div>
                                 </form>
+                            {% else %}
                             
-                            <!--    Unfortunatley this product is currently out of stock -->
-                           
+                            Unfortunatley this product is currently out of stock
+                            
+                            {% endif %}
 
                         </form>
                     </div>
