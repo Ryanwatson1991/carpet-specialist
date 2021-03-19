@@ -57,7 +57,7 @@
                         </a>
                         {% else %}
                         <a href="{% url 'product_detail' product.id %}">
-                            <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}logo-3.png" alt="{{ product.name }}">
+                            <img class="card-img-top img-fluid" src="/media/no-image.jpg" alt="{{ product.name }}">
                         </a>
                     {% endif %}
                     <div class="card-body">
@@ -84,7 +84,7 @@
                         {% endif %}
                     </p>
                     <div class="card-footer">
-                        <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+
                     </div>
                     </div>
                 </div>
