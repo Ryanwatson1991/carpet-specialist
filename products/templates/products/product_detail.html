@@ -17,7 +17,7 @@
         <div class="col">
                 <div class="card mt-4">
                     <div class="row product-info">
-                        <div class="col-4">
+                        <div class="col-lg-4">
                             <div class="card-img-top img-fluid"> 
                                 {% if product.image %}
                                 <span>
@@ -57,7 +57,7 @@
                                 </div>    
                             </div>
                         </div>
-                        <div class="col-8">
+                        <div class="col-lg-8">
                             <h3 class="card-title">{{ product.name }}</h3>
                             <h4>£<span id="price">{{ product.price }}</span>M²</h4>
                             <!--Buttons to allow toggle between Description & specification display for product-->
@@ -99,7 +99,7 @@
                                 <h6>length(Metres)</h6>
                                 <input type="number" id="length" name="length" />
                                 <h6>width(Metres)</h6>
-                                <select id="width" class="form-select form-select-lg form-control mb-3" name="width" id="width" aria-label="width">
+                                <select id="width" class="form-select form-select-lg form-control mb-3" name="width" aria-label="width">
                                     <option selected disabled>Choose width</option>
                                     {% if product.category.name == 'carpets' %}
                                     <option>4</option>

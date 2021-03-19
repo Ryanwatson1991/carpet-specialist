@@ -22,14 +22,14 @@ def bag_contents(request):
             })
         else:
             product = get_object_or_404(Product, pk=item_id)
-            for width, quantity in item_data['item_width'].items():
+            for carpet_width, quantity in item_data['items_by_width'].items():
                 total += quantity * product.price
                 product_count += quantity
                 bag_items.append({
                 'item_id': item_id,
                 'quantity': item_data,
                 'product': product,
-                'width': width,
+                'carpet_width' : carpet_width,
             })
 
     if total < settings.FREE_DELIVERY_THRESHOLD:
