@@ -21,22 +21,10 @@ def add_to_bag(request, item_id):
         carpet_length = int(request.POST['length'])
     bag = request.session.get('bag', {})
 
-    if carpet_width and carpet_length:
-        carpet_area = carpet_width * carpet_length
-        if item_id in list(bag.keys()):
-            if carpet_area in bag[item_id]['item_measurements'].keys():
-                bag[item_id]['item_measurements'][carpet_area] += quantity
-            else:
-                bag[item_id]['item_measurements'][carpet_area] = quantity
-        else:
-            bag[item_id] = {'item_measurements': {
-                carpet_area : quantity,
-                }}
+    if item_id in list(bag.keys()):
+        bag[item_id][carpet_width][carpet_length] += quantity
     else:
-        if item_id in list(bag.keys()):
-            bag[item_id] += quantity
-        else:
-            bag[item_id] = quantity
+        bag[item_id][carpet_width][carpet_length] = quantity
 
     request.session['bag'] = bag
     return redirect(redirect_url)
