@@ -50,7 +50,11 @@
                                         <p>{{ item.quantity }}</p>
                                     </td>
                                     <td>
-                                        <p>£{{ item.carpet_price }}</p>
+                                        {% if item.product.category.name == "carpets" %}
+                                            <p>£{{ item.carpet_price }}</p>
+                                        {% else %}
+                                            <p>£{{ item.product.price }}</p>
+                                        {% endif %}
                                     </td>
                                 </tr>
                             {% endfor %}
