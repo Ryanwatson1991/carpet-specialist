@@ -30,7 +30,7 @@ def add_to_bag(request, item_id):
                 bag[item_id]['item_measurements'][carpet_area] = quantity
         else:
             bag[item_id] = {'item_measurements': {
-                carpet_area : quantity,
+                carpet_area : quantity
                 }}
     else:
         if item_id in list(bag.keys()):

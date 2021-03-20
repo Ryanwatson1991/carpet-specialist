@@ -23,13 +23,15 @@ def bag_contents(request):
         else:
             product = get_object_or_404(Product, pk=item_id)
             for carpet_area, quantity in item_data['item_measurements'].items():
-                total += quantity * product.price
+                carpet_price = product.price * int(carpet_area)
+                total += quantity * carpet_price
                 product_count += quantity
                 bag_items.append({
                 'item_id': item_id,
-                'quantity': item_data,
+                'quantity': quantity,
                 'product': product,
                 'carpet_area' : carpet_area,
+                'carpet_price' : carpet_price,
             })
 
 

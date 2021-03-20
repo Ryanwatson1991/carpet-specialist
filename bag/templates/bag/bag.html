@@ -21,10 +21,6 @@
         <div class="row">
             <div class="col">
                 {% if bag_items %}
-                    {{ bag_items }}
-                    <br>
-                    <br>
-                    {{ request.session.bag }}
                     <div class="table-responsive">
                         <table class="table table-borderless">
                             <thead>
@@ -54,7 +50,7 @@
                                         <p>{{ item.quantity }}</p>
                                     </td>
                                     <td>
-                                        <p>£{{ item.product.price }}</p>
+                                        <p>£{{ item.carpet_price }}</p>
                                     </td>
                                 </tr>
                             {% endfor %}
