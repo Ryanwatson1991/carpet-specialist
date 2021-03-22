@@ -49,20 +49,8 @@
                                         <p>£{{ item.product.price }}</p>
                                     </td>
                                     <td>
-                                        <form class="form update-form" method="POST" action="">
-                                            {% csrf_token %}
-                                                <div class="form-group">
-                                                    <div class="input-group">
-                                                        <input class="form-control qty_input" type="number" name="quantity" value="{{ item.quantity }}" min="1" max="99"
-                                                            data-item_id="{{ item.item_id }}" id="id_qty_{{ item.item_id }}">
-                                                        {% if item.product.category.name == 'carpets' or item.product.category.name == 'vinyl' or item.product.category.name == 'laminate'%}
-                                                            <input type="hidden" name="carpet_area" value="{{ item.carpet_area }}">
-                                                        {% endif %}
-                                                    </div>
-                                                </div>
-                                        </form>
-                                        <a class="update-link text-info"><small>Update</small></a>
-                                        <a class="remove-item text-danger float-right" id="remove_{{ item.item_id }}" data-size="{{ item.carpet_area }}"><small>Remove</small></a>
+                                        <p>{{ item.quantity }}</p>
+                                        <a class="remove-item text-danger" id="remove_{{ item.item_id }}" data-carpet_area="{{ item.carpet_area }}"><small>Remove</small></a>
                                     </td>
                                     <td>
                                         {% if item.product.category.name == "carpets" %}
@@ -121,7 +109,7 @@
         let csrfToken = "{{ csrf_token }}";
         let itemId = $(this).attr('id').split('remove_')[1];
         let carpet_area = $(this).data('carpet_area');
-        let url = `/bag/remove/${itemId}`;
+        let url = `/bag/remove/${itemId}/`;
         let data = {'csrfmiddlewaretoken': csrfToken, 'carpet_area': carpet_area};
 
         $.post(url,data)
@@ -129,7 +117,6 @@
              location.reload();
          })
     })
-
 </script>
 
 {% endblock %}
