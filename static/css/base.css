@@ -116,3 +116,20 @@ footer{
     margin-left: 50%
 }
 }
+
+/* Messages & Toasts */
+
+.toast {
+    position: fixed;
+    top: 150px;
+    right: 15px;
+    z-index: 99999999999;
+}
+
+.custom-toast {
+    overflow: visible;
+}
+
+.toast-capper {
+    height: 2px;
+}

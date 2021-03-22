@@ -150,6 +150,7 @@
 {% endblock %}
 
 {% block postloadjs %}
+{{ block.super }}
     <script>
         {% for colour in colours %}
             $("#showcolour-{{ colour.id }}").hide();
