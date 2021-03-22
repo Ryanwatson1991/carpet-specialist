@@ -59,6 +59,11 @@ html {
 	top:1px;
 }
 
+.update-link,
+.remove-item {
+    cursor: pointer;
+}
+
 footer{
     background-color: #262425;
     padding: 2%;
