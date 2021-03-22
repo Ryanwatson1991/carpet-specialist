@@ -112,7 +112,7 @@
                                                     <option>4</option>
                                                     {% endif %}
                                                 </select>
-                                                <input type="button" onClick="multiplyBy()" Value="Calculate total cost" class="myButton" />
+                                                <input type="button" onClick="multiplyBy()" Value="Calculate total cost" class="myButton" id="calculate"/>
                                                 <h6>Total Area</h6>
                                                 <span id="area"></span>
                                                 <h6>Total Price</h6>
@@ -121,7 +121,7 @@
                                             </div>
                                         {% endif %}
                                     
-                                        <div class="form-row">
+                                        <div class="form-row" id="qty_add">
                                             <div class="col-12">
                                                 <p class="mt-3"><strong>Quantity:</strong></p>
                                                 <div class="form-group w-50">
@@ -163,7 +163,7 @@
 
 
 
-        /* Hide/show Description or specification on Product Detail Page */
+    /* Hide/show Description or specification on Product Detail Page */
 
         // Hide Specification by default
         $("#specification").hide();
@@ -179,5 +179,14 @@
                 $("#specification").hide();
                 $("#description").show();
             });
+    
+        {% if product.category.name == 'carpets' or product.category.name == 'vinyl' or product.category.name == 'laminate'%}
+        /* Hide quantity and 'add to bag' until user has calculated price */
+            $("#qty_add").hide();
+
+            $('#calculate').on('click', function() {
+                    $("#qty_add").show();
+                });
+        {% endif %}
     </script>
 {% endblock %}
