@@ -24,11 +24,12 @@ def add_to_bag(request, item_id):
     bag = request.session.get('bag', {})
 
     if carpet_width and carpet_length:
-        carpet_area = carpet_width * carpet_length
+        carpet_area = str(carpet_width * carpet_length)
         if item_id in list(bag.keys()):
+
             if carpet_area in bag[item_id]['item_measurements'].keys():
                 bag[item_id]['item_measurements'][carpet_area] += quantity
-                messages.success(request, f'Updated { product.name } quantity to {bag[item_id]["items_by_size"]}')
+                messages.success(request, f'Updated { product.name } quantity to {bag[item_id]["item_measurements"]}')
                 # Note - this isn't working properly, need to fix it so that it updated quantity if two of the same size carpets are added to bag
             else:
                 bag[item_id]['item_measurements'][carpet_area] = quantity
