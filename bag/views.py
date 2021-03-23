@@ -17,26 +17,32 @@ def add_to_bag(request, item_id):
     redirect_url = request.POST.get('redirect_url')
     carpet_width = 0
     carpet_length = 0
+    carpet_colour = None
     if 'width' in request.POST:
         carpet_width = int(request.POST['width'])
     if 'length' in request.POST:
         carpet_length = int(request.POST['length'])
+    if 'colour' in request.POST:
+        print("COLOUR IS IN REQUEST")
+        carpet_colour = request.POST['colour']
+        print(f"CARPET_COLOUR: {carpet_colour}")
     bag = request.session.get('bag', {})
 
     if carpet_width and carpet_length:
         carpet_area = str(carpet_width * carpet_length)
         if item_id in list(bag.keys()):
-
             if carpet_area in bag[item_id]['item_measurements'].keys():
+                # If carpet with specified area is already in bag, update quantity
                 bag[item_id]['item_measurements'][carpet_area] += quantity
                 messages.success(request, f'Updated { product.name } quantity to {bag[item_id]["item_measurements"]}')
-                # Note - this isn't working properly, need to fix it so that it updated quantity if two of the same size carpets are added to bag
             else:
+                # If carpet with different area is in the bag, add carpet with new area as different item to bag
                 bag[item_id]['item_measurements'][carpet_area] = quantity
                 messages.success(request, f'Added { product.name } to your bag')
         else:
+            # If carpet isn't already in bag, add totally new item to bag
             bag[item_id] = {'item_measurements': {
-                carpet_area : quantity
+                carpet_area : quantity,
                 }}
             messages.success(request, f'Added { product.name } to your bag')
     else:

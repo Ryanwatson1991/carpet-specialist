@@ -5,9 +5,10 @@ function multiplyBy() {
     num2 = document.getElementById("length").value;
     area = (num1 * num2);
     price = parseFloat(document.getElementById("price").innerHTML);
+    total_price = (area * price);
 
     document.getElementById("area").innerHTML = num1 * num2 + ' M²';
-    document.getElementById("selected_cost").innerHTML = '£' + area * price;
+    document.getElementById("selected_cost").innerHTML = '£' + total_price.toFixed(2);
 }
 
 

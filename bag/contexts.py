@@ -3,6 +3,7 @@ from django.conf import settings
 from django.shortcuts import get_object_or_404
 from products.models import Product
 
+
 def bag_contents(request):
 
     bag_items = []
@@ -27,12 +28,12 @@ def bag_contents(request):
                 total += quantity * carpet_price
                 product_count += quantity
                 bag_items.append({
-                'item_id': item_id,
-                'quantity': quantity,
-                'product': product,
-                'carpet_area' : carpet_area,
-                'carpet_price' : carpet_price,
-            })
+                    'item_id': item_id,
+                    'quantity': quantity,
+                    'product': product,
+                    'carpet_area' : carpet_area,
+                    'carpet_price' : carpet_price,
+                })
 
 
     if total < settings.FREE_DELIVERY_THRESHOLD:

@@ -36,11 +36,15 @@
                             {% for item in bag_items %}
                                 <tr>
                                     <td class="w-25">
-                                        <img class="img-fluid" src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                                        {% if item.product.image %}
+                                            <img class="img-fluid" src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                                        {% else %}
+                                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}no-image.jpg" alt="{{ product.name }}">
+                                        {% endif %}
                                     </td>
                                     <td>
                                         <p>{{ item.product.name }}</p>
-                                        <p>Colour:</p>
+                                        <p>Colour: {{ item.carpet_colour }}</p>
                                         {% if item.carpet_area %}
                                             <p>Custom Size: {{ item.carpet_area }}M²</p>
                                         {% endif %}

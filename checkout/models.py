@@ -67,8 +67,8 @@ class OrderLineItem(models.Model):
         """
         Override the original save method to set the line item total and update the order total.
         """
-        self.lineitem_total = self.product.price() # Remember to come back to this line if order totals don't work out properly
+        self.lineitem_total = self.product.price()
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f'{self.pproduct.name} on order {self.order.order_number}'
+        return f'{self.product.name} on order {self.order.order_number}'

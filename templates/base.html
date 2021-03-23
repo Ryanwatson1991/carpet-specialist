@@ -41,7 +41,7 @@
             <div id="topnav" class="row">
                 <div class="col-4 my-auto">
                     <a href="{% url 'home' %}" class="nav-link logo">
-                        <img src="/media/logo-3.jpg" alt="Alex Gibb"> <!--This needs changing to MEDIA_ROOT-->
+                        <img src="{{ MEDIA_URL }}logo-3.jpg" alt="Alex Gibb"> <!--This needs changing to MEDIA_ROOT-->
                     </a>
                 </div>
                 <div class="col-lg-4 my-auto">
