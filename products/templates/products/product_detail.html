@@ -45,15 +45,17 @@
                                         </a>
                                 {% endif %}
                                 <div class="col-12 mt-3">
-                                    <select class="form-select form-select-lg form-control mb-3" name="genre_name" id="myselection" aria-label="genre_name">
-                                        <option selected disabled>Pick a Colour</option>
-                                        {% for colour in colours %}
-                                            <!--Loop means dropdown will only show colours who's product field matches up with the durrent product name-->
-                                            {% if product.name == colour.product.name %}
-                                                <option value="colour-{{ colour.id }}" class="carpet-colour" id="click-{{ colour.id }}">{{ colour.friendly_name }}</option>
-                                            {% endif %}
-                                        {% endfor %}}
-                                    </select>
+                                    {% if product.category.name == 'carpets' or product.category.name == 'vinyl' or product.category.name == 'laminate'%}
+                                        <select class="form-select form-select-lg form-control mb-3" name="genre_name" id="myselection" aria-label="genre_name">
+                                            <option selected disabled>Pick a Colour</option>
+                                            {% for colour in colours %}
+                                                <!--Loop means dropdown will only show colours who's product field matches up with the durrent product name-->
+                                                {% if product.name == colour.product.name %}
+                                                    <option value="colour-{{ colour.id }}" class="carpet-colour" id="click-{{ colour.id }}">{{ colour.friendly_name }}</option>
+                                                {% endif %}
+                                            {% endfor %}}
+                                        </select>
+                                    {% endif %}
                                 </div>    
                             </div>
                         </div>

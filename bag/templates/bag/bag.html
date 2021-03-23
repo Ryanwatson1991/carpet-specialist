@@ -53,7 +53,7 @@
                                         <p>{{ item.quantity }}</p> 
                                     </td>
                                     <td>
-                                        {% if item.product.category.name == "carpets" %}
+                                        {% if item.product.category.name == 'carpets' or item.product.category.name == 'vinyl' or item.product.category.name == 'laminate'%}
                                             <p>£{{ item.carpet_price }}</p>
                                         {% else %}
                                             <p>£{{ item.product.price }}</p>
@@ -79,7 +79,7 @@
                             </tr>
                             <tr>
                                 <td colspan="5" class="text-right">
-                                    <a href="" class="btn myButton">
+                                    <a href="{% url 'checkout' %}" class="btn myButton">
                                         <span class="text-uppercase">Checkout</span>
                                     </a>
                                 </td>
