@@ -12,11 +12,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
-    <form class="form" action="{% url 'add_to_bag' product.id %}" method="POST">
-                                    {% csrf_token %}
-                                        {% if product.category.name == 'carpets' or product.category.name == 'vinyl' or product.category.name == 'laminate'%}
-    
+<div class="container">    
         <div class="row">
             <div class="col">
                     <div class="card mt-4">
@@ -98,7 +94,9 @@
                         <div class="card-body">
                             {% if product.in_stock.name == 'Yes' %}
                                 <!--Price Calculator - Calculates cost of product based on user selected length & width and then £ per M²-->
-                                    
+                                    <form class="form" action="{% url 'add_to_bag' product.id %}" method="POST">
+                                        {% csrf_token %}
+                                            {% if product.category.name == 'carpets' or product.category.name == 'vinyl' or product.category.name == 'laminate'%}
                                                 <div id="price_calculator">
                                                     <h5>Price Calculator</h5>
                                                     <h6>Enter size below</h6>
@@ -141,8 +139,7 @@
                                                 </div>
                                                 <input type="hidden" name="redirect_url" value="{{ request.path }}">
                                             </div>
-                                        
-                                                            
+                                    </form>                               
                             {% else %}    
                                 <p>Unfortunatley this product is currently out of stock</p>    
                             {% endif %}
@@ -150,7 +147,7 @@
                     </div>
             </div>
         </div>
-     </form>   
+      
 </div>
 {% endblock %}
 
