@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
+{% endblock %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col">
+                
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h2>Thank you for your purchase!</h2>
+                <p>Your order information is below. You will recieve a confirmation email at {order.email} shortly. \
+        Thank you for your purchase!'</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col12 col-lg-"></div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-lg-7">
+                <h2>Do you need someone to fit your carpet?</h2>
+                <p>We can do that too!</p>
+                <a href="#" class="myButton">Contact us</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
