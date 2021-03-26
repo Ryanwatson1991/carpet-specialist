@@ -28,27 +28,23 @@ def add_to_bag(request, item_id):
 
     if carpet_width and carpet_length:
         carpet_area = str(carpet_width * carpet_length)
-        carpet_details = {
-                'carpet_area' : carpet_area,
-                'carpet_colour' : carpet_colour,
-                'carpet_length' : carpet_length,
-                'carpet_width' : carpet_width,
-            }
         if item_id in list(bag.keys()):
-            if carpet_area in bag[item_id]['item_measurements'].keys():
+            if (carpet_area in bag[item_id]['item_details'].keys()) and (carpet_colour in bag[item_id]['item_details'].keys()):
                 # If carpet with specified area is already in bag, update quantity
-                bag[item_id]['item_measurements'][carpet_area] += quantity
-                messages.success(request, f'Updated { product.name } quantity to {bag[item_id]["item_measurements"]}')
+                bag[item_id]['item_details'][carpet_area] += quantity
+                messages.success(request, f'Updated { product.name } quantity to {bag[item_id][carpet_area]}')
                 print(bag)
             else:
                 # If carpet with different area is in the bag, add carpet with new area as different item to bag
-                bag[item_id]['item_measurements'][carpet_area] = quantity
+                bag[item_id]['item_details'][carpet_area] = quantity
                 messages.success(request, f'Added { product.name } to your bag')
                 print(bag)
         else:
             # If carpet isn't already in bag, add totally new item to bag
-            bag[item_id] = {'item_measurements': {
-                carpet_area : quantity,
+            bag[item_id] = {'item_details':{
+                carpet_area: carpet_area,
+                carpet_colour: carpet_colour,
+                quantity: quantity
                 }}
             messages.success(request, f'Added { product.name } to your bag')
             print(bag)
