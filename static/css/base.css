@@ -131,3 +131,10 @@ footer{
     overflow-x: hidden;
     overflow-y: auto;
 }
+
+/* Profile css */
+
+.order-history {
+    max-height: 416px;
+    overflow-y: auto;
+}

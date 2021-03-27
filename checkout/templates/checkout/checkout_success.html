@@ -190,6 +190,14 @@
             </div>
         </div>
         <div class="row contact">
+            {% if from_profile %}
+                    <a href="{% url 'profile' %}" class="btn mybutton">
+                        <span class="icon mr-2">
+                            <i class="fas fa-angle-left"></i>
+                        </span>
+                        <span class="text-uppercase">Back to Profile</span>
+                    </a>
+            {% endif %}
             <div class="col-12 col-lg-7">
                 <h2>Do you need someone to fit your carpet?</h2>
                 <p>We can do that too!</p>
