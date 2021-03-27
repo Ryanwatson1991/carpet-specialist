@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.db.models import Q
 
 from .models import Product, Colour, Category, Style, Material, Backing, Manufacturer
-from .forms import ProductForm 
+from .forms import ProductForm, ColourForm 
 
 # Create your views here.
 
@@ -107,9 +107,21 @@ def add_product(request):
             messages.error(request, 'Failed to add product. Please ensure you have correctly filled out form details.')
     else:
         form = ProductForm()
-        
+
+    if request.method == 'POST':
+        form2 = ColourForm(request.POST, request.FILES)
+        if form2.is_valid():
+            form2.save()
+            messages.success(request, 'Successfully added product!')
+            return redirect(reverse('add_product'))
+        else:
+            messages.error(request, 'Failed to add product. Please ensure you have correctly filled out form details.')
+    else:
+        form2 = ColourForm()
+
     template = 'products/add_product.html'
     context = {
+        'form2': form2,
         'form': form,
     }
 

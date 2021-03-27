@@ -16,11 +16,17 @@
         <div class="row">
             <div class="col">
                 <h2>Product Management</h2>
-                <h5>Add a Product</h5>
             </div>
         </div>
         <div class="row">
+            <div class="col-12">
+                <button class="btn myButton" id="show_add_product">Add Products</button>
+                <button class="btn myButton" id="show_add_colour">Add Colours</button>
+            </div>
+        </div>
+        <div class="row" id="product_add">
             <div class="col-12 col-md-6">
+                <h5>Add a Product</h5>
                 <form method="POST" action="{% url 'add_product' %}" class="form mb-2" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form | crispy }}
@@ -30,7 +36,36 @@
                 </form>
             </div>
         </div>
+        <div class="row" id="colour_add">
+            <div class="col-12 col-md-6">
+                <h5>Add a Colour</h5>
+                <form method="POST" action="{% url 'add_product' %}" class="form mb-2" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form2 | crispy }}
+                <div class="text-right">
+                    <button class="btn myButton" type="submit">Add Colour</button>
+                </div>
+                </form>
+            </div>
+        </div>
     </div>
 
 {% endblock %}
 
+{% block postloadjs %}
+{{ block.super }}
+    <script>
+    $("#colour_add").hide();
+
+    $('#show_add_colour').on('click', function() {
+        $("#product_add").hide();
+        $("#colour_add").show();
+    });
+
+    $('#show_add_product').on('click', function() {
+        $("#colour_add").hide();
+        $("#product_add").show();
+    });
+    </script>
+
+{% endblock %}
