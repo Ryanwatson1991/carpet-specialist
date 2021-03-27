@@ -1,0 +1,23 @@
+Hello {{ order.full_name }},
+
+Thank you for your order from Alex Gibb Carpet Fitting Specialist. 
+
+Please accept this email as confirmation of your order. Your order information is as follows:
+
+Order Number: {{ order.order_number }}
+Order Date: {{ order.order_date }}
+
+Order Total: £{{ order.order_total }}
+Delivery: £{{ order.delivery_cost }}
+Grand Total: £{{ order.order_number }}
+
+Your order will be delivered to 
+{{ order.street_address1 }}
+{{ order.town_or_city }}
+{{ order.county }}
+
+Please feel free to get in touch at {{ contact_email }} if you have any queries. 
+
+Many thanks, 
+
+Alex Gibb

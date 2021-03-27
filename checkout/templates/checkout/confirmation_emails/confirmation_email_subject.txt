@@ -1,0 +1,1 @@
+Confirmation of order from Alex Gibb CarpetFittingSpecialist! Order Number {{ order.order_number }}
