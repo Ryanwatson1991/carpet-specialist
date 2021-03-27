@@ -29,7 +29,13 @@
                 <h5>Add a Product</h5>
                 <form method="POST" action="{% url 'add_product' %}" class="form mb-2" enctype="multipart/form-data">
                 {% csrf_token %}
-                {{ form | crispy }}
+                {% for field in form %}
+                    {% if field.name != 'image' %}
+                        {{ field | as_crispy_field }}
+                    {% else %}
+                        {{ field }}
+                    {% endif %}
+                {% endfor %}
                 <div class="text-right">
                     <button class="btn myButton" type="submit">Add Product</button>
                 </div>
@@ -41,7 +47,13 @@
                 <h5>Add a Colour</h5>
                 <form method="POST" action="{% url 'add_product' %}" class="form mb-2" enctype="multipart/form-data">
                 {% csrf_token %}
-                {{ form2 | crispy }}
+                {% for field in form2 %}
+                    {% if field.name != 'image' %}
+                        {{ field | as_crispy_field }}
+                    {% else %}
+                        {{ field }}
+                    {% endif %}
+                {% endfor %}
                 <div class="text-right">
                     <button class="btn myButton" type="submit">Add Colour</button>
                 </div>
@@ -65,6 +77,11 @@
     $('#show_add_product').on('click', function() {
         $("#colour_add").hide();
         $("#product_add").show();
+    });
+
+    $('#new-image').change(function() {
+        var file = $(`#new-image`)[0].files[0];
+        $('#filename').text(`Image will be set to: ${file.name}`);
     });
     </script>
 
