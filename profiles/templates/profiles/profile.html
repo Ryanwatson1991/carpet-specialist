@@ -95,9 +95,11 @@
                         <a href="{% url 'product_detail' product.id %}">{{ product.name }}</a>
                         </h4>
                         <h5>£{{ product.price }} M²</h5>
-                        <a href="{% url 'favourite_product' product.id %}">
-                            <i class="far fa-heart fa-lg"></i>
-                        </a>
+                        <div id="favourite-section">
+                                <a href="{% url 'favourite_product' product.id %}">
+                                    <i class="fas fa-heart fa-lg"></i>
+                                </a>
+                        </div>
                     </div>
                     <p class="card-text" class="spec">
                         {% if product.category %}

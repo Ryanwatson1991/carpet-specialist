@@ -1,6 +1,6 @@
 from django import forms
 from .widgets import CustomClearableFileInput
-from .models import Product, Category, Colour
+from .models import Product, Category, Colour, Comment
 
 
 class ProductForm(forms.ModelForm):
@@ -38,3 +38,13 @@ class ColourForm(forms.ModelForm):
         self.fields['product'].choices = product_names
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'border-black rounded-0'
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ('name', 'body')
+        widgets = {
+            'name': forms.TextInput(attrs={"class": "col-sm-12"}),
+            'body': forms.Textarea(attrs={'class': 'form-control'}),
+        }

@@ -1,11 +1,11 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
-from products.models import Product
+from profiles.models import UserProfile
 
-from .models import Product, Colour, Category, Style, Material, Backing, Manufacturer
-from .forms import ProductForm, ColourForm 
+from .models import Product, Colour, Category, Style, Material, Backing, Manufacturer, Comment
+from .forms import ProductForm, ColourForm, CommentForm
 
 # Create your views here.
 
@@ -77,7 +77,7 @@ def all_products(request):
         'products': products,
         'search_term' : query,
         'current_categories': categories,
-        'current_sorting': current_sorting,        
+        'current_sorting': current_sorting,
     }
 
     return render(request, 'products/products.html', context)
@@ -88,13 +88,44 @@ def product_detail(request, product_id):
 
     product = get_object_or_404(Product, pk=product_id)
     colours = Colour.objects.all()
+
     is_favourite=False
+
     if product.favourite.filter(id=request.user.id).exists():
         is_favourite=True
+
+    comments = product.comments.filter(status=True)
+    user_comment = None
+
+    # Followed two tutorials for comments functionality. Mainly this one https://www.youtube.com/watch?v=pNVgLDKrK40, but also this one https://www.youtube.com/watch?v=OuOB9ADT_bo&list=PLCC34OHNcOtr025c1kHSPrnP18YPB-NFi&index=36
+    # Also stumbled accross solution to prefill username in comments form on slack (see README for screenshot)
+
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            user_comment = comment_form.save(commit=False)
+            user_comment.product = product
+            user_comment.save()
+            return redirect(reverse('product_detail', args=[product.id]))
+    else:
+        if request.user.is_authenticated:
+            try:
+                profile = UserProfile.objects.get(user=request.user)
+                comment_form = CommentForm(initial={
+                    'name': profile.user,
+                })
+            except UserProfile.DoesNotExist:
+                comment_form = CommentForm()
+        else:
+            comment_form = CommentForm()
 
     context = {
         'product': product,
         'colours': colours,
+        'is_favourite': is_favourite,
+        'user_comment': user_comment,
+        'comments': comments,
+        'comment_form': comment_form
     }
 
     return render(request, 'products/product_detail.html', context)
@@ -180,3 +211,5 @@ def delete_product(request, product_id):
     product.delete()
     messages.success(request, 'Product deleted!')
     return redirect(reverse('products'))
+
+
