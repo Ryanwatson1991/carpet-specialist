@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
@@ -6,6 +7,8 @@ from .models import UserProfile
 from .forms import UserProfileForm
 
 from checkout.models import Order
+
+from products.models import Product
 
 
 @login_required
@@ -23,11 +26,13 @@ def profile(request):
     else:
         form = UserProfileForm(instance=profile)
     orders = profile.orders.all()
+    products = Product.objects.filter(favourite=request.user)
 
     template = 'profiles/profile.html'
     context = {
         'form': form,
         'orders': orders,
+        'products': products,
         'on_profile_page': True
     }
 
@@ -48,3 +53,22 @@ def order_history(request, order_number):
     }
 
     return render(request, template, context)
+
+
+@login_required
+def favourite_product(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+    if product.favourite.filter(id=request.user.id).exists():
+        product.favourite.remove(request.user)
+        messages.success(request, f'{product.name}successfully removed from favourites')
+    else:
+        product.favourite.add(request.user)
+        messages.success(request, f'{product.name} successfully added to favourites')
+    return HttpResponseRedirect(request.META["HTTP_REFERER"])
+
+
+def user_favourites(request):
+    products = Product.objects.filter(favourite=request.user)
+
+    return render(request)
+

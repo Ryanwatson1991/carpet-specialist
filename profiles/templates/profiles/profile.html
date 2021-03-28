@@ -21,8 +21,15 @@
                 <h2>My Profile</h2>
             </div>
         </div>
-    
         <div class="row">
+            <div class="col-12">
+                <button class="btn myButton" id="show_favourites">Favourites</button>
+                <button class="btn myButton" id="show_delivery">Delivery Info</button>
+                <button class="btn myButton" id="show_order_hist">Order History</button>
+            </div>
+        </div>
+        
+        <div class="row" id="default_delivery_info">
             <div class="col-12 col-lg-6">
                 <p>Default Delivery Information</p>
                 <form class="mt-3" action="{% url 'profile' %}" method="POST" id="profile-update-form">
@@ -31,6 +38,8 @@
                     <button class="btn myButton float-right" >Update Details</button>
                 </form>
             </div>
+        </div>
+        <div class="row" id=order-hist>
             <div class="col-12 col-lg-6">
                 <p>Order History</p>
                 <div class="order-history">
@@ -67,9 +76,85 @@
                 </div>
             </div>
         </div>
+        <div class="row" id="faves">
+            {% if products %}
+                {% for product in products %}
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card h-100">
+                    {% if product.image %}
+                        <a href="{% url 'product_detail' product.id %}">
+                            <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
+                        </a>
+                        {% else %}
+                        <a href="{% url 'product_detail' product.id %}">
+                            <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}no-image.jpg" alt="{{ product.name }}">
+                        </a>
+                    {% endif %}
+                    <div class="card-body">
+                        <h4 class="card-title">
+                        <a href="{% url 'product_detail' product.id %}">{{ product.name }}</a>
+                        </h4>
+                        <h5>£{{ product.price }} M²</h5>
+                        <a href="{% url 'favourite_product' product.id %}">
+                                                <i class="fas fa-star fa-lg"></i>
+                                            </a>
+                    </div>
+                    <p class="card-text" class="spec">
+                        {% if product.category %}
+                            Category: {{ product.category.friendly_name}}; 
+                        {% endif %}
+                        {% if product.style %}
+                            Style: {{ product.style.friendly_name }}; 
+                        {% endif %}
+                        {% if product.material %}
+                            Material: {{ product.material.friendly_name }}; 
+                        {% endif %}
+                        {% if product.backing %}
+                            Backing: {{ product.backing.friendly_name }}; 
+                        {% endif %}
+                        {% if product.manufacturer %}
+                            Manufacturer: {{ product.manufacturer.friendly_name }};
+                        {% endif %}
+                    </p>
+                    <div class="card-footer">
+                        {% if request.user.is_superuser %}
+                        <a href="{% url 'edit_product' product.id %}" class="text-info">Edit</a> 
+                        <a href="{% url 'delete_product' product.id %}" class="text-danger">Delete</a>
+                        {% endif %}
+                    </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                You have no favourites
+            {% endif %}
+        </div>
     </div>
     {{ profile }}
 {% endblock %}
 
 {% block postloadjs %}
+{{ block.super }}
+<script>
+    $("#default_delivery_info").hide();
+    $("#order-hist").hide();
+
+    $('#show_favourites').on('click', function() {
+        $("#default_delivery_info").hide();
+        $("#order-hist").hide();
+        $("#faves").show();
+    });
+
+    $('#show_delivery').on('click', function() {
+        $("#faves").hide();
+        $("#order-hist").hide();
+        $("#default_delivery_info").show();
+    });
+
+    $('#show_order_hist').on('click', function() {
+        $("#faves").hide();
+        $("#default_delivery_info").hide();
+        $("#order-hist").show();
+    });
+</script>
 {% endblock %}

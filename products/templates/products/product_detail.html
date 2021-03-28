@@ -64,8 +64,17 @@
                                 <h3 class="card-title">{{ product.name }}</h3>
                                 <h4>£<span id="price">{{ product.price }}</span>M²</h4>
                                 <h6>
-                                    <a href="{% url 'edit_product' product.id %}" class="text-info">Edit</a> 
-                                    <a href="{% url 'delete_product' product.id %}" class="text-danger ml-4">Delete</a>
+                                    {% if request.user.is_superuser %}
+                                        <a href="{% url 'edit_product' product.id %}" class="text-info">Edit</a> 
+                                        <a href="{% url 'delete_product' product.id %}" class="text-danger ml-4">Delete</a>
+                                    {% endif %}
+                                    <div id="favourite-section">
+                                            
+                                            <a href="{% url 'favourite_product' product.id %}">
+                                                <i class="fas fa-star fa-lg"></i>
+                                            </a>
+
+                                    </div>
                                 </h6>
                                 <!--Buttons to allow toggle between Description & specification display for product-->
                                 <input type="button" Value="Description" class="myButton" id="description_button" />

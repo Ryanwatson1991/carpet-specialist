@@ -1,4 +1,7 @@
 from django.db import models
+from django.contrib.auth.models import User
+
+from profiles.models import User
 
 
 class Category(models.Model):
@@ -115,6 +118,7 @@ class Product(models.Model):
     manufacturer = models.ForeignKey('Manufacturer', null=True, blank=True, on_delete=models.SET_NULL)
     image_url = models.URLField(max_length=1024, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
+    favourite = models.ManyToManyField(User, related_name='favourite', blank=True)
 
     def __str__(self):
         return self.name
