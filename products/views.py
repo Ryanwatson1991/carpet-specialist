@@ -88,6 +88,9 @@ def product_detail(request, product_id):
 
     product = get_object_or_404(Product, pk=product_id)
     colours = Colour.objects.all()
+    is_favourite=False
+    if product.favourite.filter(id=request.user.id).exists():
+        is_favourite=True
 
     context = {
         'product': product,

@@ -139,6 +139,10 @@ footer{
     overflow-y: auto;
 }
 
+.fa-heart{
+    color: #A6998F;
+}
+
 /* Add/edit product image widget */
 
 .btn-file {
