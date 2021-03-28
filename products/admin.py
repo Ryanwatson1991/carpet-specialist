@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, Category, In_stock, Colour, Style, Material, Backing, Manufacturer
+from .models import Product, Category, In_stock, Colour, Style, Material, Backing, Manufacturer, Comment
 
 # Register your models here.
 
@@ -44,6 +44,12 @@ class ManufacturerAdmin(admin.ModelAdmin):
         'friendly_name',
     )
 
+class CommentAdmin(admin.ModelAdmin):
+    list_display = (
+        'product',
+        'name'
+    )
+
 class ColourAdmin(admin.ModelAdmin):
     list_display = (
         'friendly_name',
@@ -59,3 +65,4 @@ admin.site.register(Style, StyleAdmin)
 admin.site.register(Material, MaterialAdmin)
 admin.site.register(Backing, BackingAdmin)
 admin.site.register(Manufacturer, ManufacturerAdmin)
+admin.site.register(Comment, CommentAdmin)

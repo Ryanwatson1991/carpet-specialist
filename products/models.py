@@ -128,7 +128,7 @@ class Product(models.Model):
 
 
 class Comment(models.Model):
-    post = models.ForeignKey('Product', related_name="comments", on_delete=models.CASCADE)
+    product = models.ForeignKey('Product', related_name="comments", on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     body = models.TextField()
     date_added = models.DateTimeField(auto_now_add=True)

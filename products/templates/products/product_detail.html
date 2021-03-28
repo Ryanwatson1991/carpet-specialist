@@ -166,6 +166,45 @@
             </div>
         </div>
     </form>   
+
+    <div class="col-md-10 comments-sm">
+                        
+                        <!--Allow user to submit comments if they're logged in-->
+                        <div class="card my-4">
+                            <h5 class="card-header comment-head">Leave a Comment:</h5>
+                           
+                            <div class="card-body">
+                                <form method="POST" action="">
+                                <div class="form-group">
+                                    <textarea class="form-control" id="comment_body" name="comment_body" rows="3"></textarea>
+                                </div>
+                                <button type="submit" class="btn review-purple-button">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!--Previously posted Comments-->
+                        <h5 class="title">User Reviews</h5>
+                        <hr>
+                         {% if not product.comments.all %}
+                                <p>No comments</p>
+                            {% else %}
+                                {% for comment in product.comments.all %}
+                                    <!--Display comments posted to this review-->
+                                    <div class="media mb-4">
+                                        <div class="col-1"></div>
+                                        <div class="media-body">
+                                            <h5 class="mt-0 commenter-info">{{ comment.name }} | {{ comment.date_added }}</h5>
+                                            {{ comment.body }}
+                                        </div>
+                                    </div>
+                                    <hr>
+                                {% endfor %}
+                            {% endif %}
+                        
+                        
+                        
+                    </div>
 </div>
 {% endblock %}
 
