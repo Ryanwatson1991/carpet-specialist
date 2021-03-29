@@ -12,10 +12,6 @@ html {
     padding: 10%;
 }
 
-.black {
-    background-color: #262425;
-}
-
 .text-white {
     color: #F2F2F2;
 }
@@ -109,6 +105,65 @@ footer{
     font-size: 1.3rem;
 }
 
+.category-list {
+    width: 100%;
+    font-size: 1.3rem;
+    padding-top: .7%
+}
+
+.category-list div{
+    text-align: center;
+}
+
+.category-links {
+    color:#a6998f;
+    text-align: center;
+    
+}
+
+.category-links:hover {
+    color: #fff;
+}
+
+.nav-stretch {
+    padding: 0;
+    margin: 0;
+}
+
+.searchbar-mob {
+    background-color: #fff;
+    border: 0;
+    width: 100%;
+}
+
+.search-input {
+    width: 100%!important;
+}
+
+.black {
+    background-color: #262425;
+}
+
+/* Header stypling responsive */
+    
+.mobile-logo{
+    width: 200px;
+    float: left;
+}
+
+.nav-black-mob {
+    padding: 10%;
+    background-color: #262425
+}
+
+.nav-mob-btn {
+    background-color:#a6998f;
+}
+
+.mob-shop-btn {
+    color:#a6998f;
+}
+
 /* Header Styling - Media Queries */
 
 @media (max-width: 768px){
@@ -116,6 +171,8 @@ footer{
     margin-left: 50%
 }
 }
+
+
 
 /* Messages & Toasts */
 
