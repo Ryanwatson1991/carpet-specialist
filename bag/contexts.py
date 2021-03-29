@@ -25,7 +25,7 @@ def bag_contents(request):
             product = get_object_or_404(Product, pk=item_id)
             for carpet_area, quantity in item_data['item_measurements'].items():
                 carpet_price = product.price * int(carpet_area)
-                carpet_colour = request.POST.get('colour')
+                carpet_colour = item_data['carpet_details']['carpet_colour']
                 total += quantity * carpet_price
                 product_count += quantity
                 bag_items.append({
