@@ -72,9 +72,6 @@ def checkout(request):
                                 product=product,
                                 quantity=quantity,
                                 carpet_area=carpet_area,
-                                carpet_length=item_data['carpet_details']['carpet_length'],
-                                carpet_width=item_data['carpet_details']['carpet_width'],
-                                carpet_colour=item_data['carpet_details']['carpet_colour'],
                             )
                             order_line_item.save()
                 except Product.DoesNotExist:

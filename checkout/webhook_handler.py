@@ -136,7 +136,6 @@ class StripeWH_Handler:
                                 product=product,
                                 quantity=quantity,
                                 carpet_area=carpet_area,
-                                carpet_colour=item_data['carpet_details']['carpet_colour'],
                             )
                             order_line_item.save()
             except Exception as e:
