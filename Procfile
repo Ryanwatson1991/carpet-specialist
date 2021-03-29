@@ -1,1 +1,1 @@
-web: gunicorn carpet_specialist.wsgi:application
+web: gunicorn carpet-specialist.wsgi:application
