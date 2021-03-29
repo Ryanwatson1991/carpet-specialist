@@ -26,6 +26,8 @@ def bag_contents(request):
             for carpet_area, quantity in item_data['item_measurements'].items():
                 carpet_price = product.price * int(carpet_area)
                 carpet_colour = item_data['carpet_details']['carpet_colour']
+                carpet_width = item_data['carpet_details']['carpet_width']
+                carpet_length = item_data['carpet_details']['carpet_length']
                 total += quantity * carpet_price
                 product_count += quantity
                 bag_items.append({
@@ -35,6 +37,8 @@ def bag_contents(request):
                     'carpet_area' : carpet_area,
                     'carpet_price' : carpet_price,
                     'carpet_colour' : carpet_colour,
+                    'carpet_length' : carpet_length,
+                    'carpet_width' : carpet_width,
                 })
 
 

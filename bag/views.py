@@ -56,9 +56,11 @@ def add_to_bag(request, item_id):
             messages.success(request, f'Added { product.name } to your bag')
     else:
         if item_id in list(bag.keys()):
+        # if item doesn't need measurements but is already in bag, increase quantity
             bag[item_id] += quantity
             messages.success(request, f'Updated { product.name } quantity to {bag[item_id]}')
         else:
+        # if item doesn't need measurements but isn't already in bag, add as new item to bag
             bag[item_id] = quantity
             messages.success(request, f'Added { product.name } to your bag')
     

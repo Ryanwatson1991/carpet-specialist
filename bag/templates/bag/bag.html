@@ -46,7 +46,7 @@
                                         <p>{{ item.product.name }}</p>
                                         <p>Colour: {{ item.carpet_colour }}</p>
                                         {% if item.carpet_area %}
-                                            <p>Custom Size: {{ item.carpet_area }}M²</p>
+                                            <p>Custom Size: {{ item.carpet_length }}m x {{ item.carpet_width }}m ({{ item.carpet_area }}M²)</p>
                                         {% endif %}
                                         <a class="remove-item text-danger" id="remove_{{ item.item_id }}" data-carpet_area="{{ item.carpet_area }}"><small>Remove</small></a>
                                     </td>
