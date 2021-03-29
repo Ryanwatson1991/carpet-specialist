@@ -7,13 +7,8 @@ html {
     width: 100%;
 }}
 
-.hero {
-    background-color: #A6998F;
-    padding: 10%;
-}
-
 .text-white {
-    color: #F2F2F2;
+    color: #E3E0DE;
 }
 
 .nav-link{
@@ -28,7 +23,7 @@ html {
 .box{
     border-style: solid;
     border-color:#A6998F;
-    margin-top: 8%;
+    margin-top: 5%;
     margin-bottom: 8%;
     padding: 5%;
     color: #A6998F;
@@ -228,3 +223,12 @@ footer{
     border-radius: 0;
 }
 
+/* css for masthead taken directly from Start Bootstrap landing page theme https://github.com/StartBootstrap/startbootstrap-landing-page/blob/master/css/landing-page.css*/
+.masthead {
+  position: relative;
+  background: url("/media/hero-final3.jpg") no-repeat center center;
+  background-size: cover;
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+
+}
