@@ -15,23 +15,24 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container">
+    <div class="container profile-container">
         <div class="row">
             <div class="col">
-                <h2>My Profile</h2>
+                <h2 class="page-title">My Profile</h2>
             </div>
         </div>
         <div class="row">
+            <div class="col-12"></div>
             <div class="col-12">
                 <button class="btn myButton" id="show_favourites">Favourites</button>
                 <button class="btn myButton" id="show_delivery">Delivery Info</button>
                 <button class="btn myButton" id="show_order_hist">Order History</button>
             </div>
         </div>
-        
+        <!--Delivery info section (when not selected this is hidden by javascript-->
         <div class="row" id="default_delivery_info">
-            <div class="col-12 col-lg-6">
-                <p>Default Delivery Information</p>
+            <div class="col-12 col-lg-6 mt-3">
+                <h3 class="page-title">Delivery information:</h3>
                 <form class="mt-3" action="{% url 'profile' %}" method="POST" id="profile-update-form">
                     {% csrf_token %}
                     {{ form|crispy }}
@@ -39,9 +40,11 @@
                 </form>
             </div>
         </div>
+        <!--Order History section (when ot selected, this is hidden by javascript)-->
         <div class="row" id=order-hist>
-            <div class="col-12 col-lg-6">
-                <p>Order History</p>
+            <div class="col-12 col-lg-6 mt-3">
+                <h3 class="page-title">Order History:</h3>
+                <hr>
                 <div class="order-history">
                     <table class="table table-sm table-borderless">
                         <thead>
@@ -76,32 +79,34 @@
                 </div>
             </div>
         </div>
+        <!--Favourites section (when not selected, this is hidden by javascript)-->
         <div class="row" id="faves">
             {% if products %}
                 {% for product in products %}
-                <div class="col-lg-4 col-md-6 mb-4">
+                <div class="col-lg-4 col-md-6 mb-4 mt-3">
+                    <h3 class="page-title">My Favourites:</h3>
                     <div class="card h-100">
-                    {% if product.image %}
-                        <a href="{% url 'product_detail' product.id %}">
-                            <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
-                        </a>
-                        {% else %}
-                        <a href="{% url 'product_detail' product.id %}">
-                            <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}no-image.jpg" alt="{{ product.name }}">
-                        </a>
-                    {% endif %}
+                        {% if product.image %}
+                            <a href="{% url 'product_detail' product.id %}">
+                                <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
+                            </a>
+                            {% else %}
+                            <a href="{% url 'product_detail' product.id %}">
+                                <img class="card-img-top img-fluid page" src="{{ MEDIA_URL }}no-image.jpg" alt="{{ product.name }}">
+                            </a>
+                        {% endif %}
                     <div class="card-body">
                         <h4 class="card-title">
-                        <a href="{% url 'product_detail' product.id %}">{{ product.name }}</a>
+                        <a href="{% url 'product_detail' product.id %}" class="page-title">{{ product.name }}</a>
                         </h4>
-                        <h5>£{{ product.price }} M²</h5>
+                        <h5 class="page-title">£{{ product.price }} M²</h5>
                         <div id="favourite-section">
                                 <a href="{% url 'favourite_product' product.id %}">
                                     <i class="fas fa-heart fa-lg"></i>
                                 </a>
                         </div>
                     </div>
-                    <p class="card-text" class="spec">
+                    <p class="card-text card-details" class="spec">
                         {% if product.category %}
                             Category: {{ product.category.friendly_name}}; 
                         {% endif %}

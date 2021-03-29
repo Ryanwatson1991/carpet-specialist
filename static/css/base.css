@@ -184,7 +184,7 @@ footer{
     overflow-y: auto;
 }
 
-/* Profile css */
+/* Profile & Products pages (they share product cards so I'm sticking the styling together) css */
 
 .order-history {
     max-height: 416px;
@@ -193,6 +193,11 @@ footer{
 
 .fa-heart{
     color: #A6998F;
+}
+
+.card-details {
+    padding: 5%;
+    color: #a6998f;
 }
 
 /* Add/edit product image widget */
@@ -232,3 +237,9 @@ footer{
   padding-bottom: 8rem;
 
 }
+
+/* Titles accross site */
+.page-title{
+    color: #a6998f;
+}
+
