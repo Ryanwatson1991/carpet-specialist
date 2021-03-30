@@ -116,10 +116,10 @@
                                                 <div id="price-calculator">
                                                     <h5 class=>Price Calculator - enter measurements below</h5>
                                                     <h6>Length(Metres)</h6>
-                                                    <input class="form-control mb-3" type="number" id="length" name="length" placeholder="Floor Length" required/>
+                                                    <input class="form-control mb-3 qty_input" type="number" id="length" name="length" placeholder="Type Floor Length" min="1" max="99" required/>
                                                     <h6>Width(Metres)</h6>
                                                     <select id="width" class="form-control mb-3" name="width" aria-label="width" required="required">
-                                                        <option value="" selected disabled>Floor Width</option>
+                                                        <option value="" selected disabled>Select Floor Width</option>
                                                         <!--Value above is empty to make 'required' tag for dropdown work-->
                                                         {% if product.category.name == 'carpets' %}
                                                         <option>4</option>
