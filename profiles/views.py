@@ -59,10 +59,6 @@ def order_history(request, order_number):
     return render(request, template, context)
 
 
-# Used these two tutorials for help with favourites functionality 
-# https://www.youtube.com/watch?v=1XiJvIuvqhs 
-# & 
-# https://www.youtube.com/watch?v=OgA0TTKAtqQ&list=PLOLrQ9Pn6caxY4Q1U9RjO1bulQp5NDYS_&index=8
 @login_required
 def favourite_product(request, product_id):
     """

@@ -97,10 +97,7 @@ def product_detail(request, product_id):
     comments = product.comments.filter(status=True)
     user_comment = None
 
-    # Followed two tutorials for comments functionality. 
-    # Mainly this one https://www.youtube.com/watch?v=pNVgLDKrK40, 
-    # but also this one 
-    # https://www.youtube.com/watch?v=OuOB9ADT_bo&list=PLCC34OHNcOtr025c1kHSPrnP18YPB-NFi&index=36
+    # Followed two tutorials for comments functionality, see readme for details
     # Also stumbled accross solution to prefill username in comments 
     # form on slack (see README for screenshot)
 
