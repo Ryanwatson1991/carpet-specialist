@@ -80,7 +80,7 @@ def checkout(request):
                     )
                     order.delete()
                     return redirect(reverse('view_bag'))
-        
+
             request.session['save_info'] = 'save-info' in request.POST
             return redirect(reverse('checkout_success', args=[order.order_number]))
         else:
@@ -162,10 +162,9 @@ def checkout_success(request, order_number):
         if user_profile_form.is_valid():
             user_profile_form.save()
 
-
     messages.success(request, f'Order successful! \
-        Order Number: {order_number}. You will recieve a \
-        confirmation email at {order.email} shortly.')
+        Order Number: {order_number}. \
+        You will recieve a confirmation email at {order.email} shortly.')
 
     if 'bag' in request.session:
         del request.session['bag']
