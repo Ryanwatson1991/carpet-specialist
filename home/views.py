@@ -8,8 +8,6 @@ def index(request):
 
 
 def contact(request):
-    """View that returns contact page - have put this in home app
-     as it's something pretty small that 
-     I didn't want to create a new app for"""
+    """View that returns contact page - have put this in home app as it's something pretty small that  I didn't want to create a new app for"""
 
     return render(request, 'home/contact.html')
