@@ -56,7 +56,6 @@ html {
 }
 
 
-
 /* Header Styling*/
 
 #topnav {
@@ -65,7 +64,7 @@ html {
 
 .shopping-nav {
     padding-top: 35px;
-    padding-right: 20%;
+    padding-right: 20%;f
 }
 
 .shopping-nav a {
@@ -137,16 +136,20 @@ html {
 }
 
 .nav-black-mob {
-    padding: 10%;
+    padding-top: 5%;
+    padding-bottom: 2%;
     background-color: #262425
-}
-
-.nav-mob-btn {
-    background-color:#a6998f;
 }
 
 .mob-shop-btn {
     color:#a6998f;
+    font-size: 2rem;
+}
+
+
+.mob-shop-btn-cost {
+    color:#a6998f;
+    font-size: 100%;
 }
 
 /* Header Styling - Media Queries */
@@ -154,6 +157,12 @@ html {
 @media (max-width: 768px){
 .logo {
     margin-left: 50%
+}
+}
+
+@media (max-width: 1250px){
+.ipad-logo {
+    width: 100%;
 }
 }
 
