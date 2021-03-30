@@ -1,270 +1,73 @@
-html {
+.StripeElement,
+.stripe-style-input {
+  box-sizing: border-box;
+  height: 40px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  background-color: white;
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+}
+
+.StripeElement--focus,
+.stripe-style-input:focus,
+.stripe-style-input:active {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+}
+
+.stripe-style-input::placeholder {
+    color: #aab7c4;
+}
+
+.fieldset-label,
+.StripeElement {
+    position: relative;
+    right: .5rem;
+}
+
+#payment-form .form-control,
+#card-element {
+    color: #000;
+
+}
+
+#loading-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(166, 153, 143, .50);
+    z-index: 9999;
+}
+
+.loading-spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
     height: 100%;
 }
 
-@media (min-width: 576px){
-.form-inline .input-group {
-    width: 100%;
-}}
+/*Toasts*/
 
-.text-white {
-    color: #E3E0DE;
-}
-
-.nav-link{
-    font-family: 'Raleway', sans-serif;
-    width: 100%;
-}
-
-.main-nav{
-    margin-bottom: 1%;
-}
-
-.box{
-    border-style: solid;
-    border-color:#A6998F;
-    margin-top: 5%;
-    margin-bottom: 8%;
-    padding: 5%;
-    color: #A6998F;
-}
-
-.myButton {
-	background-color:#262425;
-	border-radius:11px;
-	border:1px solid #262425;
-	display:inline-block;
-	cursor:pointer;
-	color:#a6998f;
-	font-family:Arial;
-	font-size:13px;
-	font-weight:bold;
-	padding:13px 41px;
-	text-decoration:none;
-}
-.myButton:hover {
-	background-color:#f2f2f2;
-}
-.myButton:active {
-	position:relative;
-	top:1px;
-}
-
-.update-link,
-.remove-item {
-    cursor: pointer;
-}
-
-
-/* Header Styling*/
-
-#topnav {
-    height: 200px;
-}
-
-.shopping-nav {
-    padding-top: 35px;
-    padding-right: 20%;f
-}
-
-.shopping-nav a {
-    color: #A6998F;
-}
-
-.shopping-nav a:hover {
-    color: #262425;
-}
-
-.shopping-nav li {
-    margin-right: 5%;
-    /* border-right:1px solid #A6998F; */
-}
-
-.shopping-icon {
-    font-size: 1.7rem;
-    padding-bottom: 7%;
-}
-
-.shopping-icon-text{
-    font-size: 1.3rem;
-}
-
-.category-list {
-    width: 100%;
-    font-size: 1.3rem;
-    padding-top: .7%
-}
-
-.category-list div{
-    text-align: center;
-}
-
-.category-links {
-    color:#a6998f;
-    text-align: center;
-    
-}
-
-.category-links:hover {
-    color: #fff;
-}
-
-.nav-stretch {
-    padding: 0;
-    margin: 0;
-}
-
-.searchbar-mob {
-    background-color: #fff;
-    border: 0;
-    width: 100%;
-}
-
-.search-input {
-    width: 100%!important;
-}
-
-.black {
-    background-color: #262425;
-}
-
-/* Header stypling responsive */
-    
-.mobile-logo{
-    width: 200px;
-    float: left;
-}
-
-.nav-black-mob {
-    padding-top: 5%;
-    padding-bottom: 2%;
-    background-color: #262425
-}
-
-.mob-shop-btn {
-    color:#a6998f;
-    font-size: 2rem;
-}
-
-
-.mob-shop-btn-cost {
-    color:#a6998f;
-    font-size: 100%;
-}
-
-/* Header Styling - Media Queries */
-
-@media (max-width: 768px){
-.logo {
-    margin-left: 50%
-}
-}
-
-@media (max-width: 1250px){
-.ipad-logo {
-    width: 100%;
-}
-}
-
-/* Footer Styling */
-
-footer{
-    background-color: #262425;
-    padding: 2%;
-    font-family: 'Raleway', sans-serif;
-    color: #f2f2f2;
-}
-
-
-.foot-icon{
-    padding-left: 5%;
-    padding-right: 5%; 
-}
-
-.foot-icon i{
-    color:#a6998f;
-    font-size: 3rem;
-
-}
-
-.foot-icon i:hover{
-    color: #f2f2f2;
-}
-
-/* Messages & Toasts */
-
-.toast {
+.message-container {
     position: fixed;
-    top: 150px;
+    top: 72px;
     right: 15px;
     z-index: 99999999999;
 }
 
-.bag-notification-wrapper {
-    height: 100px;
-    overflow-x: hidden;
-    overflow-y: auto;
+.custom-toast {
+    overflow: visible;
 }
 
-/* Profile & Products pages (they share product cards so I'm sticking the styling together) css */
-
-.order-history {
-    max-height: 416px;
-    overflow-y: auto;
-}
-
-.fa-heart{
-    color: #A6998F;
-}
-
-.card-details {
-    padding: 5%;
-    color: #a6998f;
-}
-
-.product-info{
-    padding: 2%;
-}
-
-/* Add/edit product image widget */
-
-.btn-file {
-    position: relative;
-    overflow: hidden;
-}
-
-.btn-file input[type="file"] {
-    position: absolute;
-    top: 0;
-    right: 0;
-    min-width: 100%;
-    min-height: 100%;
-    opacity: 0;
-    cursor: pointer;
-}
-
-.custom-checkbox .custom-control-label::before {
-    border-radius: 0;
-    border-color: #dc3545 
-}
-
-.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
-    background-color: #dc3545;
-    border-color: #dc3545;
-    border-radius: 0;
-}
-
-/* css for masthead taken directly from Start Bootstrap landing page theme https://github.com/StartBootstrap/startbootstrap-landing-page/blob/master/css/landing-page.css*/
-.masthead {
-  position: relative;
-  background: url("/media/hero-final3.jpg") no-repeat center center;
-  background-size: cover;
-  padding-top: 8rem;
-  padding-bottom: 8rem;
-
-}
-
-/* Titles accross site */
-.page-title{
-    color: #a6998f;
+.toast-capper {
+    height: 2px;
 }

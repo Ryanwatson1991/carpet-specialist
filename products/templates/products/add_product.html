@@ -10,7 +10,7 @@
         </div>
     </div>
 {% endblock %}
-
+<!--Add Products - Allows superuser to add a product to the site without going into Admin-->
 {% block content %}
     <div class="container page-title">
         <div class="row">
@@ -44,6 +44,8 @@
                 </form>
             </div>
         </div>
+<!--Add Colour - As it's pretty important that certain products have colours to display, I've also given super user functionality to add colours 
+    and specify which products they should appear on without going through Admin -->
         <div class="row" id="colour_add">
             <div class="col-12 col-md-6">
                 <h5>Add a Colour</h5>
@@ -70,22 +72,23 @@
 {% block postloadjs %}
 {{ block.super }}
     <script>
-    $("#colour_add").hide();
-
-    $('#show_add_colour').on('click', function() {
-        $("#product_add").hide();
-        $("#colour_add").show();
-    });
-
-    $('#show_add_product').on('click', function() {
+    //Toggles between Add Colour and Add Product options
         $("#colour_add").hide();
-        $("#product_add").show();
-    });
 
-    $('#new-image').change(function() {
-        var file = $(`#new-image`)[0].files[0];
-        $('#filename').text(`Image will be set to: ${file.name}`);
-    });
+        $('#show_add_colour').on('click', function() {
+            $("#product_add").hide();
+            $("#colour_add").show();
+        });
+
+        $('#show_add_product').on('click', function() {
+            $("#colour_add").hide();
+            $("#product_add").show();
+        });
+
+        $('#new-image').change(function() {
+            var file = $(`#new-image`)[0].files[0];
+            $('#filename').text(`Image will be set to: ${file.name}`);
+        });
     </script>
 
 {% endblock %}

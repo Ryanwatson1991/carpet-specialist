@@ -218,6 +218,7 @@
 {{ block.super }}
     <script>
         {% for colour in colours %}
+        // Makes sure only the specified colour is shown on screen (this works alongside a function in base.js but had to include this part here as it includes template variables)
             $("#showcolour-{{ colour.id }}").hide();
 
             $('#click-{{ colour.id }}').on('click', function() {

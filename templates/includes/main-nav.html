@@ -1,182 +1,233 @@
 <div class="container main-nav d-none d-lg-block">
-                <div class="row black">
-                    <div class="col-12">
-                        <nav class="navbar navbar-expand-lg">
-                            <ul class="list-inline list-unstyled category-list">
-                                <div class="row">
-
-                                    <div class="col-2">
-                                        <li class="nav-item dropdown list-inline-item">
-                                            <a class="nav-link dropdown category-links" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            All Products
-                                            </a>
-                                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                                <hr>
-                                                <h6>Sort By</h6>
-                                                <a class="dropdown-item" href="{% url 'products' %}?sort=price&direction=asc">Price</a>
-                                                <a class="dropdown-item" href="{% url 'products' %}?sort=category&direction=asc">Flooring Type</a>
-                                                <a class="dropdown-item" href="{% url 'products' %}?sort=style&direction=asc">Style</a>
-                                                <a class="dropdown-item" href="{% url 'products' %}?sort=material&direction=asc">Material</a>
-                                                <a class="dropdown-item" href="{% url 'products' %}?sort=backing&direction=asc">Backing</a>
-                                                <a class="dropdown-item" href="{% url 'products' %}?sort=manufacturer&direction=asc">Manufacturer</a>
-                                            </div>                                                  
-                                        </li>
-                                    </div>
-                                    <div class="col-2">
-                                        <li class="nav-item dropdown list-inline-item">
-                                            <a class="nav-link dropdown category-links" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Carpets
-                                            </a>
-                                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                                <br>
-                                                <a class="dropdown-item" href="{% url 'products' %}?category=carpets">All Carpets</a>
-                                                <!--<a class="dropdown-item" href="#">Colour</a>-->
-                                                <!--<a class="dropdown-item" href="#">Price</a>-->
-                                                <hr>
-                                                <br>
-                                                <h6>Style</h6>
-                                                <a class="dropdown-item" href="{% url 'products' %}?style=twist_pile">Twist Pile</a>
-                                                <a class="dropdown-item" href="{% url 'products' %}?style=berber_loop_pile">Berber Loop Pile</a>
-                                                <a class="dropdown-item" href="{% url 'products' %}?style=deep_pile_saxony">Deep Pile Saxony</a>
-                                                <a class="dropdown-item" href="{% url 'products' %}?style=striped_carpet">Striped</a>
-                                                <a class="dropdown-item" href="{% url 'products' %}?style=sparkle">Sparkle</a>
-                                                <a class="dropdown-item" href="{% url 'products' %}?style=cord">Cord</a>
-                                                <a class="dropdown-item" href="{% url 'products' %}?style=patterned">Patterned</a>
-                                                <a class="dropdown-item" href="{% url 'products' %}?style=kids_childrens_carpet">Kids/Children</a>
-                                                <a class="dropdown-item" href="{% url 'products' %}?style=budget">Budget</a>
-                                                <hr>
-                                                <br>
-                                                <h6>Material</h6>
-                                                <a class="dropdown-item" href="{% url 'products' %}?material=polypropylene">100% Polypropylene</a>
-                                                <a class="dropdown-item" href="{% url 'products' %}?material=polyamide">100% Polyamide</a>
-                                                <a class="dropdown-item" href="{% url 'products' %}?material=wool">100% Wool</a>
-                                                <a class="dropdown-item" href="{% url 'products' %}?material=wool_mix">Wool Mix</a>
-                                                <a class="dropdown-item" href="{% url 'products' %}?material=polyester">Polyester</a>
-                                                <hr>
-                                                <br>
-                                                <h6>Backing</h6>
-                                                <a class="dropdown-item" href="{% url 'products' %}?backing=carpet_fusion">Carpet Fusion</a>
-                                                <a class="dropdown-item" href="{% url 'products' %}?backing=fusion_backing">Fusion Backing</a>
-                                                <a class="dropdown-item" href="{% url 'products' %}?backing=latex_gel_backing">Latex Gel Backing</a>
-                                                <a class="dropdown-item" href="{% url 'products' %}?backing=felt_backing_carpet">Felt Backing</a>
-                                                <a class="dropdown-item" href="{% url 'products' %}?backing=action_hessian_backing">Action (Hessian) Backing</a>
-                                                <a class="dropdown-item" href="{% url 'products' %}?backing=gel_backing">Gel Backing</a>
-                                                <a class="dropdown-item" href="{% url 'products' %}?backing=foam_backing_carpet">Foam Backing</a>
-                                                <a class="dropdown-item" href="{% url 'products' %}?backing=woven_backing">Woven Backing</a>
-                                                <a class="dropdown-item" href="{% url 'products' %}?backing=latex_backing">Latex Backing</a>
-                                                <hr>
-                                                <br>
-                                                <h6>Manufacturer</h6>
-                                                <a class="dropdown-item" href="{% url 'products' %}?manufacturer=polyamide">Abingdon Carpets</a>
-                                                <a class="dropdown-item" href="{% url 'products' %}?manufacturer=wool">Associated Weavers</a>
-                                                <a class="dropdown-item" href="{% url 'products' %}?manufacturer=wool_mix">Cormar Carpets</a>
-                                                <a class="dropdown-item" href="{% url 'products' %}?manufacturer=polyester">Regency Carpets</a>
-                                                <hr>
-                                                <br>
-                                            </div>                               
-                                        </li>
-                                    </div>
-                                    <div class="col-2">
-                                        <li class="nav-item dropdown list-inline-item">
-                                            <a class="nav-link dropdown category-links" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Vinyl
-                                            </a>
-                                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                                <br>
-                                                <a class="dropdown-item" href="{% url 'products' %}?category=vinyl">All Vinyl</a>
-                                                <hr>
-                                                <br>
-                                                <h6>Style</h6>
-                                                <a class="dropdown-item" href="{% url 'products' %}?style=plain">Plain</a>
-                                                <a class="dropdown-item" href="{% url 'products' %}?style=wood_planks">Wood Planks</a>
-                                                <a class="dropdown-item" href="{% url 'products' %}?style=tiles">Tiles</a>
-                                                <a class="dropdown-item" href="{% url 'products' %}?style=striped_vinyl">Striped</a>
-                                                <a class="dropdown-item" href="{% url 'products' %}?style=kids_childrens_vinyl">Kids/Children</a>
-                                                <hr>
-                                                <br>
-                                                <h6>Backing</h6>
-                                                <a class="dropdown-item" href="{% url 'products' %}?backing=felt_backing_vinyl">Felt Backing</a>
-                                                <a class="dropdown-item" href="{% url 'products' %}?backing=foam_backing_vinyl">Foam Backing</a>
-                                                <!--<h6>Width</h6>
-                                                <a class="dropdown-item" href="#">Width</a>-->
-                                                <hr>
-                                                <br>
-                                                <h6>Manufacturer</h6>
-                                                <a class="dropdown-item" href="{% url 'products' %}?manufacturer=rhinofloor">Rhinofloor Vinyl Flooring</a>
-                                                <a class="dropdown-item" href="{% url 'products' %}?manufacturer=tarkett">Tarkett Vinyl Flooring</a>
-                                                <hr>
-                                                <br>  
-                                            </div>
-                                        </li>
-                                    </div>
-                                    <div class="col-2">
-                                        <li class="nav-item dropdown list-inline-item">
-                                            <a class="nav-link dropdown category-links" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Laminate
-                                            </a>
-                                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                                <br>
-                                                <a class="dropdown-item" href="{% url 'products' %}?category=laminate">All Laminate</a>
-                                                <hr>
-                                                <br>
-                                                <h6>Style</h6>
-                                                <a class="dropdown-item" href="{% url 'products' %}?style=wood">Wood</a>
-                                                <a class="dropdown-item" href="{% url 'products' %}?style=stone">Stone</a>
-                                                <!--<h6>Thickness</h6>
-                                                <a class="dropdown-item" href="#">Width</a>-->
-                                                <hr>
-                                                <br>
-                                                <h6>Manufacturer</h6>
-                                                <a class="dropdown-item" href="{% url 'products' %}?manufacturer=balterio">Balterio Laminate Flooring</a>
-                                                <br>
-                                                <hr>
-                                            </div>
-                                        </li>
-                                    </div>
-                                    <div class="col-2">
-                                        <li class="nav-item dropdown list-inline-item">
-                                            <a class="nav-link dropdown category-links" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Underlay
-                                            </a>
-                                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                                <hr>
-                                                <a class="dropdown-item" href="{% url 'products' %}?category=underlay">All Underlay</a>
-                                                <hr>
-                                                <br>
-                                                <a class="dropdown-item" href="{% url 'products' %}?style=carpet_underlay">Carpet Underlay</a>
-                                                <hr>
-                                                <br>
-                                                <a class="dropdown-item" href="{% url 'products' %}?style=laminate_underlay"></a>Laminate Flooring Underlay</a>
-                                                <br>
-                                                <hr>
-                                            </div>
-                                        </li>
-                                    </div>
-                                    <div class="col-2">
-                                        <li class="nav-item dropdown list-inline-item">
-                                            <a class="nav-link dropdown category-links" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Accessories
-                                            </a>
-                                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                                <br>
-                                                <a class="dropdown-item" href="{% url 'products' %}?category=accessories">All Accessories</a>
-                                                <hr>
-                                                <br>
-                                                <a class="dropdown-item" href="{% url 'products' %}?style=carpet_accessories">Carpet Accessories</a>
-                                                <hr>
-                                                <br>
-                                                <a class="dropdown-item" href="{% url 'products' %}?style=laminate_accessories">Laminate Flooring Accessories</a>
-                                                <hr>
-                                                <br>
-                                                <a class="dropdown-item" href="{% url 'products' %}?style=vinyl_accessories">Vinyl Flooring Accessories</a>
-                                                <hr>
-                                                <br>
-                                            </div>
-                                        </li>
-                                    </div>
+    <div class="row black">
+        <div class="col-12">
+            <nav class="navbar navbar-expand-lg">
+                <ul class="list-inline list-unstyled category-list">
+                    <div class="row">
+                        <div class="col-2">
+                            <!--Navbar that shows on large screens, each item has a dropdown that allows for sorting products in various ways-->
+                            <li class="nav-item dropdown list-inline-item">
+                                <a class="nav-link dropdown category-links" href="#" id="navbarDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    All Products
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <hr>
+                                    <h6>Sort By</h6>
+                                    <a class="dropdown-item"
+                                        href="{% url 'products' %}?sort=price&direction=asc">Price</a>
+                                    <a class="dropdown-item"
+                                        href="{% url 'products' %}?sort=category&direction=asc">Flooring Type</a>
+                                    <a class="dropdown-item"
+                                        href="{% url 'products' %}?sort=style&direction=asc">Style</a>
+                                    <a class="dropdown-item"
+                                        href="{% url 'products' %}?sort=material&direction=asc">Material</a>
+                                    <a class="dropdown-item"
+                                        href="{% url 'products' %}?sort=backing&direction=asc">Backing</a>
+                                    <a class="dropdown-item"
+                                        href="{% url 'products' %}?sort=manufacturer&direction=asc">Manufacturer</a>
                                 </div>
-                            </ul>   
-                        </nav>
+                            </li>
+                        </div>
+                        <div class="col-2">
+                            <li class="nav-item dropdown list-inline-item">
+                                <a class="nav-link dropdown category-links" href="#" id="navbarDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Carpets
+                                </a>
+                                <!--Carpet Options-->
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <br>
+                                    <a class="dropdown-item" href="{% url 'products' %}?category=carpets">All
+                                        Carpets</a>
+                                    <hr>
+                                    <br>
+                                    <h6>Style</h6>
+                                    <a class="dropdown-item" href="{% url 'products' %}?style=twist_pile">Twist Pile</a>
+                                    <a class="dropdown-item" href="{% url 'products' %}?style=berber_loop_pile">Berber
+                                        Loop Pile</a>
+                                    <a class="dropdown-item" href="{% url 'products' %}?style=deep_pile_saxony">Deep
+                                        Pile Saxony</a>
+                                    <a class="dropdown-item"
+                                        href="{% url 'products' %}?style=striped_carpet">Striped</a>
+                                    <a class="dropdown-item" href="{% url 'products' %}?style=sparkle">Sparkle</a>
+                                    <a class="dropdown-item" href="{% url 'products' %}?style=cord">Cord</a>
+                                    <a class="dropdown-item" href="{% url 'products' %}?style=patterned">Patterned</a>
+                                    <a class="dropdown-item"
+                                        href="{% url 'products' %}?style=kids_childrens_carpet">Kids/Children</a>
+                                    <a class="dropdown-item" href="{% url 'products' %}?style=budget">Budget</a>
+                                    <hr>
+                                    <br>
+                                    <h6>Material</h6>
+                                    <a class="dropdown-item" href="{% url 'products' %}?material=polypropylene">100%
+                                        Polypropylene</a>
+                                    <a class="dropdown-item" href="{% url 'products' %}?material=polyamide">100%
+                                        Polyamide</a>
+                                    <a class="dropdown-item" href="{% url 'products' %}?material=wool">100% Wool</a>
+                                    <a class="dropdown-item" href="{% url 'products' %}?material=wool_mix">Wool Mix</a>
+                                    <a class="dropdown-item"
+                                        href="{% url 'products' %}?material=polyester">Polyester</a>
+                                    <hr>
+                                    <br>
+                                    <h6>Backing</h6>
+                                    <a class="dropdown-item" href="{% url 'products' %}?backing=carpet_fusion">Carpet
+                                        Fusion</a>
+                                    <a class="dropdown-item" href="{% url 'products' %}?backing=fusion_backing">Fusion
+                                        Backing</a>
+                                    <a class="dropdown-item" href="{% url 'products' %}?backing=latex_gel_backing">Latex
+                                        Gel Backing</a>
+                                    <a class="dropdown-item"
+                                        href="{% url 'products' %}?backing=felt_backing_carpet">Felt Backing</a>
+                                    <a class="dropdown-item"
+                                        href="{% url 'products' %}?backing=action_hessian_backing">Action (Hessian)
+                                        Backing</a>
+                                    <a class="dropdown-item" href="{% url 'products' %}?backing=gel_backing">Gel
+                                        Backing</a>
+                                    <a class="dropdown-item"
+                                        href="{% url 'products' %}?backing=foam_backing_carpet">Foam Backing</a>
+                                    <a class="dropdown-item" href="{% url 'products' %}?backing=woven_backing">Woven
+                                        Backing</a>
+                                    <a class="dropdown-item" href="{% url 'products' %}?backing=latex_backing">Latex
+                                        Backing</a>
+                                    <hr>
+                                    <br>
+                                    <h6>Manufacturer</h6>
+                                    <a class="dropdown-item" href="{% url 'products' %}?manufacturer=polyamide">Abingdon
+                                        Carpets</a>
+                                    <a class="dropdown-item" href="{% url 'products' %}?manufacturer=wool">Associated
+                                        Weavers</a>
+                                    <a class="dropdown-item" href="{% url 'products' %}?manufacturer=wool_mix">Cormar
+                                        Carpets</a>
+                                    <a class="dropdown-item" href="{% url 'products' %}?manufacturer=polyester">Regency
+                                        Carpets</a>
+                                    <hr>
+                                    <br>
+                                </div>
+                            </li>
+                        </div>
+                        <div class="col-2">
+                            <li class="nav-item dropdown list-inline-item">
+                                <a class="nav-link dropdown category-links" href="#" id="navbarDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Vinyl
+                                </a>
+                                <!--Vinyl Options-->
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <br>
+                                    <a class="dropdown-item" href="{% url 'products' %}?category=vinyl">All Vinyl</a>
+                                    <hr>
+                                    <br>
+                                    <h6>Style</h6>
+                                    <a class="dropdown-item" href="{% url 'products' %}?style=plain">Plain</a>
+                                    <a class="dropdown-item" href="{% url 'products' %}?style=wood_planks">Wood
+                                        Planks</a>
+                                    <a class="dropdown-item" href="{% url 'products' %}?style=tiles">Tiles</a>
+                                    <a class="dropdown-item" href="{% url 'products' %}?style=striped_vinyl">Striped</a>
+                                    <a class="dropdown-item"
+                                        href="{% url 'products' %}?style=kids_childrens_vinyl">Kids/Children</a>
+                                    <hr>
+                                    <br>
+                                    <h6>Backing</h6>
+                                    <a class="dropdown-item" href="{% url 'products' %}?backing=felt_backing_vinyl">Felt
+                                        Backing</a>
+                                    <a class="dropdown-item" href="{% url 'products' %}?backing=foam_backing_vinyl">Foam
+                                        Backing</a>
+                                    <hr>
+                                    <br>
+                                    <h6>Manufacturer</h6>
+                                    <a class="dropdown-item"
+                                        href="{% url 'products' %}?manufacturer=rhinofloor">Rhinofloor Vinyl
+                                        Flooring</a>
+                                    <a class="dropdown-item" href="{% url 'products' %}?manufacturer=tarkett">Tarkett
+                                        Vinyl Flooring</a>
+                                    <hr>
+                                    <br>
+                                </div>
+                            </li>
+                        </div>
+                        <div class="col-2">
+                            <li class="nav-item dropdown list-inline-item">
+                                <a class="nav-link dropdown category-links" href="#" id="navbarDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Laminate
+                                </a>
+                                <!--Laminate Options-->
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <br>
+                                    <a class="dropdown-item" href="{% url 'products' %}?category=laminate">All
+                                        Laminate</a>
+                                    <hr>
+                                    <br>
+                                    <h6>Style</h6>
+                                    <a class="dropdown-item" href="{% url 'products' %}?style=wood">Wood</a>
+                                    <a class="dropdown-item" href="{% url 'products' %}?style=stone">Stone</a>
+                                    <hr>
+                                    <br>
+                                    <h6>Manufacturer</h6>
+                                    <a class="dropdown-item" href="{% url 'products' %}?manufacturer=balterio">Balterio
+                                        Laminate Flooring</a>
+                                    <br>
+                                    <hr>
+                                </div>
+                            </li>
+                        </div>
+                        <div class="col-2">
+                            <li class="nav-item dropdown list-inline-item">
+                                <a class="nav-link dropdown category-links" href="#" id="navbarDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Underlay
+                                </a>
+                                <!--Underlay options-->
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <hr>
+                                    <a class="dropdown-item" href="{% url 'products' %}?category=underlay">All
+                                        Underlay</a>
+                                    <hr>
+                                    <br>
+                                    <a class="dropdown-item" href="{% url 'products' %}?style=carpet_underlay">Carpet
+                                        Underlay</a>
+                                    <hr>
+                                    <br>
+                                    <a class="dropdown-item"
+                                        href="{% url 'products' %}?style=laminate_underlay"></a>Laminate Flooring
+                                    Underlay</a>
+                                    <br>
+                                    <hr>
+                                </div>
+                            </li>
+                        </div>
+                        <div class="col-2">
+                            <li class="nav-item dropdown list-inline-item">
+                                <a class="nav-link dropdown category-links" href="#" id="navbarDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Accessories
+                                </a>
+                                <!--Accessory options-->
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <br>
+                                    <a class="dropdown-item" href="{% url 'products' %}?category=accessories">All
+                                        Accessories</a>
+                                    <hr>
+                                    <br>
+                                    <a class="dropdown-item" href="{% url 'products' %}?style=carpet_accessories">Carpet
+                                        Accessories</a>
+                                    <hr>
+                                    <br>
+                                    <a class="dropdown-item"
+                                        href="{% url 'products' %}?style=laminate_accessories">Laminate Flooring
+                                        Accessories</a>
+                                    <hr>
+                                    <br>
+                                    <a class="dropdown-item" href="{% url 'products' %}?style=vinyl_accessories">Vinyl
+                                        Flooring Accessories</a>
+                                    <hr>
+                                    <br>
+                                </div>
+                            </li>
+                        </div>
                     </div>
-                </div>
-            </div>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>

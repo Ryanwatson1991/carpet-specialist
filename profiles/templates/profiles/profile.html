@@ -24,6 +24,7 @@
         <div class="row">
             <div class="col-12"></div>
             <div class="col-12">
+                <!--Buttons allow user to toggle between different sections of profile-->
                 <button class="btn myButton mb-2" id="show_favourites">Favourites</button>
                 <button class="btn myButton mb-2" id="show_delivery">Delivery Info</button>
                 <button class="btn myButton mb-2" id="show_order_hist">Order History</button>
@@ -48,10 +49,12 @@
                 <div class="order-history">
                     <table class="table table-sm table-borderless">
                         <thead>
-                            <th>Order Number</th>
-                            <th>Date</th>
-                            <th>Items</th>
-                            <th>Order Total</th>
+                            <tr>
+                                <th>Order Number</th>
+                                <th>Date</th>
+                                <th>Items</th>
+                                <th>Order Total</th>
+                            </tr>
                         </thead>
                         <tbody>
                             {% for order in orders %}
@@ -143,6 +146,7 @@
 {% block postloadjs %}
 {{ block.super }}
 <script>
+    // Script allows toggle between profile sections
     $("#default_delivery_info").hide();
     $("#order-hist").hide();
 

@@ -21,15 +21,16 @@
         <div class="row page-title">
             <div class="col">
                 {% if bag_items %}
+                <!--If items are in the bag, shows items that are in bag-->
                     <div class="table-responsive">
                         <table class="table table-borderless">
                             <thead>
                                 <tr>
                                     <th scope="col"></th>
                                     <th scope="col">Product Info</th>
-                                    <th scope="col">Price</th>
+                                    <th scope="col">Price per M²</th>
                                     <th scope="col">Qty</th>
-                                    <th scope="col">Subtotal</th>
+                                    <th scope="col">Item price</th>
                                 </tr>
                             </thead>
 
@@ -91,36 +92,11 @@
                         </table>
                     </div>
                 {% else %}
+                <!--Shows the following if no items are in bag-->
                     <div class="p">There are no items in your shopping bag</div>
-                    <a href="{% url 'products' %}" class="myButton">Continue Shopping</a>
+                    <a href="{% url 'products' %}" class="myButton mt-3">Continue Shopping</a>
                 {% endif %}
             </div>
         </div>
     </div>
-{% endblock %}
-
-{% block postloadjs %}
-{{ block.super }}
-<script type="text/javascript">
-    // Update Quantity on Click
-    $('.update-link').click(function(e){
-        let form = $(this).prev('.update-form');
-        form.submit();
-    })
-
-    // Update Quantity on Click
-    $('.remove-item').click(function(e){
-        let csrfToken = "{{ csrf_token }}";
-        let itemId = $(this).attr('id').split('remove_')[1];
-        let carpet_area = $(this).data('carpet_area');
-        let url = `/bag/remove/${itemId}/`;
-        let data = {'csrfmiddlewaretoken': csrfToken, 'carpet_area': carpet_area};
-
-        $.post(url,data)
-         .done(function() {
-             location.reload();
-         })
-    })
-</script>
-
 {% endblock %}

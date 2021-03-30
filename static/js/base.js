@@ -1,3 +1,4 @@
+// Calculates carpet area and total based on measurements input by user 
 // I forgot how to do JavaScript Maths, used this page to remind me - https://www.w3resource.com/javascript-exercises/javascript-basic-exercise-10.php
 
 function multiplyBy() {
@@ -11,8 +12,7 @@ function multiplyBy() {
     document.getElementById("selected_cost").innerHTML = '£' + total_price.toFixed(2);
 }
 
-
-
+// Hides product detail image and allows it to cycle through other images based on colour - This is combined with a function on product_detail page to allow image to change based on selected colour. 
 // Found this here - https://tutorialdeep.com/knowhow/change-image-on-dropdown-select-option-jquery/
 
 $(document).ready(function(){
@@ -25,8 +25,6 @@ $(document).ready(function(){
 });
 
 /* Hide/show Description or specification on Product Detail Page */
-
-//Hide Specification by default
 
 $("#specification").hide();
 
