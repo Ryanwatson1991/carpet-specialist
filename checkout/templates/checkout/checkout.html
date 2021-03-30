@@ -22,9 +22,10 @@
                 <h2 class="page-title">Checkout</h2>
             </div>
         </div>
-        <div class="row">
+        <div class="row page-title">
             <div class="col-12 col-lg-6 order-lg-last mb5">
                 <div class="row">
+                    <h4>Order details:</h4>
                     <div class="col-7 offset-2">
                         <p>Item</p>
                     </div>
@@ -60,7 +61,11 @@
                             <p class="my-0 small">QTY:{{ item.quantity }}</p>
                         </div>
                         <div class="col-3 text-right">
-                            <p class="my-0 small text-muted">£{{ item.product.price }}</p>
+                            {% if item.carpet_price %}
+                                <p class="my-0 small text-muted">£{{ item.carpet_price }}</p>
+                            {% else %}
+                                <p class="my-0 small text-muted">£{{ item.product.price }}</p>
+                            {% endif %}
                         </div>
                         
                     </div>
@@ -121,12 +126,6 @@
                     </fieldset>
 
                       <div class="submit-button text-right mt-5 mb-2">                    
-						<!--<a href="{% url 'view_bag' %}" class="btn btn-outline-black rounded-0">
-							<span class="icon">
-								<i class="fas fa-chevron-left"></i>
-							</span>
-							<span class="font-weight-bold">Adjust Bag</span>
-						</a>-->
 						<button id="submit-button" class="btn myButton">
 							<span class="font-weight-bold">Complete Order</span>
 							<span class="icon">

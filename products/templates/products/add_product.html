@@ -12,21 +12,23 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container">
+    <div class="container page-title">
         <div class="row">
             <div class="col">
                 <h2>Product Management</h2>
             </div>
         </div>
+        <hr>
         <div class="row">
             <div class="col-12">
-                <button class="btn myButton" id="show_add_product">Add Products</button>
-                <button class="btn myButton" id="show_add_colour">Add Colours</button>
+                <button class="btn myButton mb-2" id="show_add_product">Add Products</button>
+                <button class="btn myButton mb-2" id="show_add_colour">Add Colours</button>
             </div>
         </div>
         <div class="row" id="product_add">
             <div class="col-12 col-md-6">
                 <h5>Add a Product</h5>
+                <hr>
                 <form method="POST" action="{% url 'add_product' %}" class="form mb-2" enctype="multipart/form-data">
                 {% csrf_token %}
                 {% for field in form %}
@@ -45,6 +47,7 @@
         <div class="row" id="colour_add">
             <div class="col-12 col-md-6">
                 <h5>Add a Colour</h5>
+                <hr>
                 <form method="POST" action="{% url 'add_product' %}" class="form mb-2" enctype="multipart/form-data">
                 {% csrf_token %}
                 {% for field in form2 %}

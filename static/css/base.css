@@ -55,17 +55,7 @@ html {
     cursor: pointer;
 }
 
-footer{
-    background-color: #262425;
-    padding: 2%;
-    font-family: 'Raleway', sans-serif;
-    color: #f2f2f2;
-}
 
-.product-info{
-    padding-top: 3%;
-    padding-left: 4%;
-}
 
 /* Header Styling*/
 
@@ -167,7 +157,30 @@ footer{
 }
 }
 
+/* Footer Styling */
 
+footer{
+    background-color: #262425;
+    padding: 2%;
+    font-family: 'Raleway', sans-serif;
+    color: #f2f2f2;
+}
+
+
+.foot-icon{
+    padding-left: 5%;
+    padding-right: 5%; 
+}
+
+.foot-icon i{
+    color:#a6998f;
+    font-size: 3rem;
+
+}
+
+.foot-icon i:hover{
+    color: #f2f2f2;
+}
 
 /* Messages & Toasts */
 
@@ -198,6 +211,10 @@ footer{
 .card-details {
     padding: 5%;
     color: #a6998f;
+}
+
+.product-info{
+    padding: 2%;
 }
 
 /* Add/edit product image widget */
@@ -242,4 +259,3 @@ footer{
 .page-title{
     color: #a6998f;
 }
-

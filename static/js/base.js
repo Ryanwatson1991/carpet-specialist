@@ -39,3 +39,4 @@ $('#description_button').on('click', function() {
         $("#specification").hide();
         $("#description").show();
     });
+    
