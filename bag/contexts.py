@@ -1,7 +1,7 @@
 from decimal import Decimal
 from django.conf import settings
 from django.shortcuts import get_object_or_404
-from products.models import Product, Colour
+from products.models import Product
 
 
 def bag_contents(request):
@@ -23,7 +23,8 @@ def bag_contents(request):
             })
         else:
             product = get_object_or_404(Product, pk=item_id)
-            for carpet_area, quantity in item_data['item_measurements'].items():
+            for carpet_area, quantity in item_data[
+                                        'item_measurements'].items():
                 carpet_price = product.price * int(carpet_area)
                 carpet_colour = item_data['carpet_details']['carpet_colour']
                 carpet_width = item_data['carpet_details']['carpet_width']
@@ -34,13 +35,12 @@ def bag_contents(request):
                     'item_id': item_id,
                     'quantity': quantity,
                     'product': product,
-                    'carpet_area' : carpet_area,
-                    'carpet_price' : carpet_price,
-                    'carpet_colour' : carpet_colour,
-                    'carpet_length' : carpet_length,
-                    'carpet_width' : carpet_width,
+                    'carpet_area': carpet_area,
+                    'carpet_price': carpet_price,
+                    'carpet_colour': carpet_colour,
+                    'carpet_length': carpet_length,
+                    'carpet_width': carpet_width,
                 })
-
 
     if total < settings.FREE_DELIVERY_THRESHOLD:
         delivery = Decimal(settings.STANDARD_DELIVERY_COST)
@@ -49,7 +49,9 @@ def bag_contents(request):
         delivery = 0
         free_delivery_delta = 0
 
-    # Delivery on this site is a flat cost of £20. Grnd total was rendering as £20 all the time so have added the below else statement to set it to '0'
+    '''Delivery on this site is a flat cost of £20. Grnd total was rendering as £20 
+    all the time so have added the below else statement to set it to '0'''
+    
     if total: 
         grand_total = delivery + total
     else: 
@@ -57,12 +59,12 @@ def bag_contents(request):
 
     context = {
         'bag_items': bag_items,
-        'total' : total,
-        'product_count' : product_count,
-        'delivery' : delivery,
-        'free_delivery_delta' : free_delivery_delta,
-        'free_delivery_threshold' : settings.FREE_DELIVERY_THRESHOLD,
-        'grand_total' : grand_total,
+        'total': total,
+        'product_count': product_count,
+        'delivery': delivery,
+        'free_delivery_delta': free_delivery_delta,
+        'free_delivery_threshold': settings.FREE_DELIVERY_THRESHOLD,
+        'grand_total': grand_total,
     }
 
     return context
