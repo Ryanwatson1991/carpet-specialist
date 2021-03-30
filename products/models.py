@@ -5,6 +5,10 @@ from profiles.models import User
 
 
 class Category(models.Model):
+    ''' 
+    Categories model, connects with products model 
+    to allow products to be grouped into categories
+    '''
 
     class Meta: 
         verbose_name_plural = "Categories"
@@ -17,6 +21,15 @@ class Category(models.Model):
 
     def get_friendly_name(self):
         return self.friendly_name
+
+
+'''
+The following models, 'in_stock', 'style', 'material', 'manufacturer', and 
+'backing' are all carpet specifications, they're here as models
+ to allow different specs to be displayed on product detail page.
+They've all very similar, I set this up early on in the project 
+and in future would set these all as fields in the same model
+'''
 
 
 class In_stock(models.Model):
@@ -37,7 +50,6 @@ class Style(models.Model):
 
     name = models.CharField(max_length=254)
     friendly_name = models.CharField(max_length=254, null=True, blank=True)
-    
 
     def __str__(self):
         return self.name
@@ -91,13 +103,19 @@ class Manufacturer(models.Model):
         return self.friendly_name
 
 
+
 class Colour(models.Model):
+    '''
+    Model to allow user to select colour on product detail page. 
+    Decided early on that this would have to be seperate to 
+    product model because each colour needs to be linked to an image.
+    '''
     name = models.CharField(max_length=30)
     friendly_name = models.CharField(max_length=30, null=True, blank=True)
     image_url = models.URLField(max_length=1024, null=True, blank=True)
     image = models.ImageField(null=True, blank=True) 
     colour_group = models.CharField(max_length=254)
-    product= models.ForeignKey('Product', null=True, blank=True, on_delete=models.SET_NULL)
+    product = models.ForeignKey('Product', null=True, blank=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return self.name
@@ -107,6 +125,9 @@ class Colour(models.Model):
 
 
 class Product(models.Model):
+    ''' 
+    Products Model
+    '''
     category = models.ForeignKey('Category', null=True, blank=True, on_delete=models.SET_NULL)
     name = models.CharField(max_length=254)
     description = models.TextField()

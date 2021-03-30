@@ -13,8 +13,10 @@ from bag.contexts import bag_contents
 import stripe
 import json
 
+
 @require_POST
 def cache_checkout_data(request):
+    """ Cache view """
     try:
         pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -31,6 +33,7 @@ def cache_checkout_data(request):
 
 
 def checkout(request):
+    """A view that submits checkout process via Stripe"""
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
 
@@ -76,20 +79,25 @@ def checkout(request):
                             order_line_item.save()
                 except Product.DoesNotExist:
                     messages.error(request, (
-                        "One of the products in your bag wasnt found. Please contact us for assistance")
+                        "One of the products in your bag wasnt found. \
+                             Please contact us for assistance")
                     )
                     order.delete()
                     return redirect(reverse('view_bag'))
 
             request.session['save_info'] = 'save-info' in request.POST
-            return redirect(reverse('checkout_success', args=[order.order_number]))
+            return redirect(reverse('checkout_success', 
+                                    args=[order.order_number]))
         else:
-            messages.error(request, 'There was an error with your order, please check the information you have filled out and resubmit.')
+            messages.error(request, 'There was an error with your order, \
+                                    please check the information you \
+                                    have filled out and resubmit.')
 
     else:
         bag = request.session.get('bag', {})
         if not bag:
-            messages.error(request, "There's nothing in your bag at the moment")
+            messages.error(request, "There's nothing in \
+                            your bag at the moment")
             return redirect(reverse('products'))
 
         current_bag = bag_contents(request)

@@ -15,13 +15,13 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <h2 class="page-title mb-2 mt-2">Shopping Bag</h2>
+                <h2 class="page-title mt-2 mb-2">Shopping Bag</h2>
             </div>
         </div>
         <div class="row page-title">
             <div class="col">
                 {% if bag_items %}
-                <!--If items are in the bag, shows items that are in bag-->
+                <!--If items are in the bag, show the items in the bag-->
                     <div class="table-responsive">
                         <table class="table table-borderless">
                             <thead>
@@ -30,7 +30,7 @@
                                     <th scope="col">Product Info</th>
                                     <th scope="col">Price per M²</th>
                                     <th scope="col">Qty</th>
-                                    <th scope="col">Item price</th>
+                                    <th scope="col">Item Price</th>
                                 </tr>
                             </thead>
 
@@ -47,7 +47,7 @@
                                         <p>{{ item.product.name }}</p>
                                         <p>Colour: {{ item.carpet_colour }}</p>
                                         {% if item.carpet_area %}
-                                            <p>Custom Size: {{ item.carpet_length }}m x {{ item.carpet_width }}m ({{ item.carpet_area }}M²)</p>
+                                            <p>Custom Size: {{ item.carpet_area }}M²</p>
                                         {% endif %}
                                         <a class="remove-item text-danger" id="remove_{{ item.item_id }}" data-carpet_area="{{ item.carpet_area }}"><small>Remove</small></a>
                                     </td>
@@ -99,4 +99,30 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+<script type="text/javascript">
+    // Update Quantity on Click
+    $('.update-link').click(function(e){
+        let form = $(this).prev('.update-form');
+        form.submit();
+    })
+
+    // Update Quantity on Click
+    $('.remove-item').click(function(e){
+        let csrfToken = "{{ csrf_token }}";
+        let itemId = $(this).attr('id').split('remove_')[1];
+        let carpet_area = $(this).data('carpet_area');
+        let url = `/bag/remove/${itemId}/`;
+        let data = {'csrfmiddlewaretoken': csrfToken, 'carpet_area': carpet_area};
+
+        $.post(url,data)
+         .done(function() {
+             location.reload();
+         })
+    })
+</script>
+
 {% endblock %}

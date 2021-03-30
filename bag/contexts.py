@@ -5,13 +5,14 @@ from products.models import Product
 
 
 def bag_contents(request):
-
+    """ Allows bag contents to be accessed accross the site """
     bag_items = []
     total = 0
     product_count = 0
     bag = request.session.get('bag', {})
 
     for item_id, item_data in bag.items():
+        # If product does not have size requirements, add the following to bag
         if isinstance(item_data, int):
             product = get_object_or_404(Product, pk=item_id)
             total += item_data * product.price
@@ -22,13 +23,13 @@ def bag_contents(request):
                 'product': product,
             })
         else:
+            # If product does have size requirements, add the following
+            #  - uses specified carpet_area to calculate price. 
             product = get_object_or_404(Product, pk=item_id)
             for carpet_area, quantity in item_data[
                                         'item_measurements'].items():
                 carpet_price = product.price * int(carpet_area)
-                carpet_colour = item_data['carpet_details']['carpet_colour']
-                carpet_width = item_data['carpet_details']['carpet_width']
-                carpet_length = item_data['carpet_details']['carpet_length']
+                carpet_colour = request.POST.get('colour')
                 total += quantity * carpet_price
                 product_count += quantity
                 bag_items.append({
@@ -38,10 +39,9 @@ def bag_contents(request):
                     'carpet_area': carpet_area,
                     'carpet_price': carpet_price,
                     'carpet_colour': carpet_colour,
-                    'carpet_length': carpet_length,
-                    'carpet_width': carpet_width,
                 })
 
+# Calculates whether delivery should be charged. 
     if total < settings.FREE_DELIVERY_THRESHOLD:
         delivery = Decimal(settings.STANDARD_DELIVERY_COST)
         free_delivery_delta = settings.FREE_DELIVERY_THRESHOLD - total
@@ -49,9 +49,8 @@ def bag_contents(request):
         delivery = 0
         free_delivery_delta = 0
 
-    '''Delivery on this site is a flat cost of £20. Grnd total was rendering as £20 
-    all the time so have added the below else statement to set it to '0'''
-    
+    # Delivery on this site is a flat cost of £20. Grnd total was rendering as
+    # £20 all the time so have added the below else statement to set it to '0'
     if total: 
         grand_total = delivery + total
     else: 

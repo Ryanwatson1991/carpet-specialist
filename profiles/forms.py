@@ -3,6 +3,9 @@ from .models import UserProfile
 
 
 class UserProfileForm(forms.ModelForm):
+    """
+    Allows user to view nd change delivery details on profile
+    """
     class Meta:
         model = UserProfile
         exclude = ('user',)
