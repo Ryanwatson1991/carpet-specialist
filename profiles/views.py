@@ -22,7 +22,7 @@ def profile(request):
             form.save()
             messages.success(request, 'Profile updated successfully')
         else:
-            message.error(request, 'Update failed. Please confirm details have been entered correctly.')
+            messages.error(request, 'Update failed. Please confirm details have been entered correctly.')
     else:
         form = UserProfileForm(instance=profile)
     orders = profile.orders.all()
@@ -38,7 +38,11 @@ def profile(request):
 
     return render(request, template, context)
 
+
 def order_history(request, order_number):
+    """
+    Get user's order history and display on profile page
+    """
     order = get_object_or_404(Order, order_number=order_number)
 
     messages.info(request, (
@@ -55,9 +59,16 @@ def order_history(request, order_number):
     return render(request, template, context)
 
 
-# Used these two tutorials for help with favourites functionality  https://www.youtube.com/watch?v=1XiJvIuvqhs & https://www.youtube.com/watch?v=OgA0TTKAtqQ&list=PLOLrQ9Pn6caxY4Q1U9RjO1bulQp5NDYS_&index=8
+# Used these two tutorials for help with favourites functionality 
+# https://www.youtube.com/watch?v=1XiJvIuvqhs 
+# & 
+# https://www.youtube.com/watch?v=OgA0TTKAtqQ&list=PLOLrQ9Pn6caxY4Q1U9RjO1bulQp5NDYS_&index=8
 @login_required
 def favourite_product(request, product_id):
+    """
+    Allows user to favourite products by 
+    pressing heart button on product detail page
+    """
     product = get_object_or_404(Product, pk=product_id)
     if product.favourite.filter(id=request.user.id).exists():
         product.favourite.remove(request.user)
@@ -69,6 +80,9 @@ def favourite_product(request, product_id):
 
 
 def user_favourites(request):
+    """
+    Displays user's favourites on profile page
+    """
     products = Product.objects.filter(favourite=request.user)
 
     return render(request)
