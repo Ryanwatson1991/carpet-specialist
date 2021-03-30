@@ -13,7 +13,8 @@ from profiles.models import UserProfile
 class Order(models.Model):
     # Copied from Boutique Ado as same details are required
     order_number = models.CharField(max_length=32, null=False, editable=False)
-    user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL, null=True, blank=True, related_name='orders')
+    user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL, 
+                                    null=True, blank=True, related_name='orders')
     full_name = models.CharField(max_length=50, null=False, blank=False)
     email = models.EmailField(max_length=254, null=False, blank=False)
     phone_number = models.CharField(max_length=20, null=False, blank=False)
@@ -34,12 +35,12 @@ class Order(models.Model):
         """
         Generate a random, unique order number
         """
+
         return uuid.uuid4().hex.upper()
 
     def update_total(self):
         """
-        Update grand total each time a line item is added, 
-        accounting for delivery costs.
+        Update grand total each time a line item is added, accounting for delivery costs.
         """
         self.order_total = self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0
         if self.order_total < settings.FREE_DELIVERY_THRESHOLD:
@@ -51,8 +52,7 @@ class Order(models.Model):
 
     def save(self, *args, **kwargs):
         """
-        Override the original save method to set
-        the order number if it hasn't been set already.
+        Override the original save method to set the order number if it hasn't been set already.
         """
         if not self.order_number:
             self.order_number = self._generate_order_number()
@@ -63,8 +63,7 @@ class Order(models.Model):
 
 
 class OrderLineItem(models.Model):
-    # Copied from Boutique Ado with minor changes to 
-    # accomodate for carpet_area pricing structure on this site
+    # Copied from Boutique Ado with minor changes to accomodate for carpet_area pricing structure on this site
     order = models.ForeignKey(Order, null=False, blank=False, on_delete=models.CASCADE, related_name='lineitems')
     product = models.ForeignKey(Product, null=False, blank=False, on_delete=models.CASCADE)
     carpet_area = models.CharField(max_length=10, null=True, blank=True)
@@ -75,7 +74,7 @@ class OrderLineItem(models.Model):
         """
         Override the original save method to set the line item total and update the order total.
         """
-        if self.product.category.name == "vinyl" or self.product.category.name == "carpets" or self.product.category.name == "laminate":
+        if self.product.category.name == "vinyl" or self.product.category.name == "carpets" or self.product.category.name == "laminate" :
             self.lineitem_total = int(self.carpet_area) * self.product.price * self.quantity
         else: 
             self.lineitem_total = self.product.price * self.quantity

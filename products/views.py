@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from profiles.models import UserProfile
 
-from .models import Product, Colour, Category, Style, Material, Backing, Manufacturer
+from .models import Product, Colour, Category, Style, Material, Backing, Manufacturer, Comment
 from .forms import ProductForm, ColourForm, CommentForm
 
 # Create your views here.
@@ -75,7 +75,7 @@ def all_products(request):
 
     context = {
         'products': products,
-        'search_term': query,
+        'search_term' : query,
         'current_categories': categories,
         'current_sorting': current_sorting,
     }
@@ -89,20 +89,16 @@ def product_detail(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     colours = Colour.objects.all()
 
-    is_favourite = False
+    is_favourite=False
 
     if product.favourite.filter(id=request.user.id).exists():
-        is_favourite = True
+        is_favourite=True
 
     comments = product.comments.filter(status=True)
     user_comment = None
 
-    # Followed two tutorials for comments functionality. 
-    # Mainly this one https://www.youtube.com/watch?v=pNVgLDKrK40, 
-    # but also this one 
-    # https://www.youtube.com/watch?v=OuOB9ADT_bo&list=PLCC34OHNcOtr025c1kHSPrnP18YPB-NFi&index=36
-    # Also stumbled accross solution to prefill username in comments 
-    # form on slack (see README for screenshot)
+    # Followed two tutorials for comments functionality. Mainly this one https://www.youtube.com/watch?v=pNVgLDKrK40, but also this one https://www.youtube.com/watch?v=OuOB9ADT_bo&list=PLCC34OHNcOtr025c1kHSPrnP18YPB-NFi&index=36
+    # Also stumbled accross solution to prefill username in comments form on slack (see README for screenshot)
 
     if request.method == 'POST':
         comment_form = CommentForm(request.POST)
@@ -137,10 +133,11 @@ def product_detail(request, product_id):
 
 @login_required
 def add_product(request):
-    """ Add Product to the store """
+    """ Add Prooduct to the store """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, you do not have permission to view this page!')
         return redirect(reverse('home'))
+
 
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)

@@ -37,6 +37,7 @@ class Style(models.Model):
 
     name = models.CharField(max_length=254)
     friendly_name = models.CharField(max_length=254, null=True, blank=True)
+    
 
     def __str__(self):
         return self.name
@@ -91,13 +92,12 @@ class Manufacturer(models.Model):
 
 
 class Colour(models.Model):
-    
     name = models.CharField(max_length=30)
     friendly_name = models.CharField(max_length=30, null=True, blank=True)
     image_url = models.URLField(max_length=1024, null=True, blank=True)
     image = models.ImageField(null=True, blank=True) 
     colour_group = models.CharField(max_length=254)
-    product = models.ForeignKey('Product', null=True, blank=True, on_delete=models.SET_NULL)
+    product= models.ForeignKey('Product', null=True, blank=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return self.name
@@ -107,7 +107,6 @@ class Colour(models.Model):
 
 
 class Product(models.Model):
-    
     category = models.ForeignKey('Category', null=True, blank=True, on_delete=models.SET_NULL)
     name = models.CharField(max_length=254)
     description = models.TextField()
@@ -129,7 +128,6 @@ class Product(models.Model):
 
 
 class Comment(models.Model):
-    
     product = models.ForeignKey('Product', related_name="comments", on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     body = models.TextField()

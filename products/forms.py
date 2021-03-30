@@ -4,7 +4,7 @@ from .models import Product, Category, Colour, Comment
 
 
 class ProductForm(forms.ModelForm):
-    '''Allows Superuser to add products to site'''
+
     class Meta:
         model = Product
         fields = '__all__'
@@ -22,7 +22,7 @@ class ProductForm(forms.ModelForm):
 
 
 class ColourForm(forms.ModelForm):
-    '''Allows Superuser to add colours to site'''
+
     class Meta:
         model = Colour
         fields = '__all__'
@@ -41,7 +41,6 @@ class ColourForm(forms.ModelForm):
 
 
 class CommentForm(forms.ModelForm):
-    ''' Allows users to leave comments on site '''
     class Meta:
         model = Comment
         fields = ('name', 'body')
