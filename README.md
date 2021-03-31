@@ -145,7 +145,8 @@ These include:
 ## Testing User Stories outlines in UX section
 
 I have done the following manual tests based on the user stories based on my three user types outlined in the previously linked spreadsheet. 
-([Avaliable here]([here](/media/readme/userstories.xlsx)))
+[Avaliable here](/media/readme/user-stories-final.xlsx) - (This file will need to be downloaded once clicked)
+
 
 ### Customer user goals
 
