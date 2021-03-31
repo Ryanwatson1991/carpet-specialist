@@ -1,5 +1,5 @@
 # Alex Gibb: Carpet Fitting Specialist
-[My deployed project is avaliable here](http://msp-3-pulp-pixels.herokuapp.com/get_index)
+[My deployed project is avaliable here](https://carpet-specialist.herokuapp.com/)
 
 ## What is the site?
 Alex Gibb has been a carpet fitter in the North-East of England for over thirty years and now, he wants to build on the name he's build up over the years and start
