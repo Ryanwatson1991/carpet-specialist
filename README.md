@@ -20,7 +20,29 @@ The user stories for this site focus on three main user types:
 * Regular customer - Someone who uses the site regularly, likley someone who works in the carpet fitting business who regularly needs to purchase supplies. 
 * Store Owner - Probably Alex Gibb, needs to be able to ammend site details in a simple way. 
 
-I have detailed my user stories [here](/media/readme/userstories.xlsx)
+I have detailed my user stories [here](/media/readme/user-stories-final.xlsx) - (This file will need to be downloaded once clicked)
+
+## Design
+
+### Bootstrap Templates
+The site design uses a number of templates from startbootstrap. These are as follows:
+* [Landing Page](https://startbootstrap.com/theme/landing-page) - for the masthead code on index page
+* [Freelancer](https://startbootstrap.com/theme/freelancer) -for the card layout on product page
+* [Shop-item](https://startbootstrap.com/template/shop-item) - for the product detail page layout
+
+I used these as the big thing that was new to me on this project was the Django framework and I wanted to spend as much time getting the backend working as possible, so prebuilt templates allowed me to do this 
+although I did end up restyling the mobile header quite extensivley (and I don't feel like I was totally successful in this). 
+
+Start Bootstrap doesn't have a full shop theme, so I chose elements that most suited what I wanted to achieve from the above template. 
+
+### Images and colour
+The colours accross the site were based on the colours avaliable in Alex Gibb's business logo 
+![logo](/media/logo-3.jpg)
+
+I haven't been able to confirm with Alex who designed the logo. 
+
+As well as this, the site uses a masthead image  that I got from free stock image site pexels (my shutterstock subscription expired and it's EXPENSIVE for how often I use it)
+This image is by artist [Kayley Dlugos](https://www.pexels.com/photo/window-shadow-on-wall-and-floor-of-modern-room-5872378/) 
 
 
 
@@ -39,6 +61,26 @@ Pdf's of my initial wireframes are linked below:
 
 # Data
 
+## Data Structure
+
+The data structure uses database models accessible in the Django admin. These models are grouped as follows:
+    * Accounts - Stores email addresses
+    * Authentocation and Authorization - Stores groups & users
+    * Checkout - stores orders made on store
+    * Products is a bit more complicated and I'll go into further detail below
+    * Sites - stores site info
+
+### Product Data
+For products, a number of models are used. These need to be added in a certain way to allow 
+correct information to be displayed. 
+
+1. Firstly there are Categories, these need to be added before products as the site uses these to filter products. 
+2. There are then a number of models specifying further information about the product. These need to also be added before product so they can be selected on product add, but unlike categories, these are not essential.
+    * These models are 'Backing', 'Manufacturer', 'Material', and 'styles'
+3. There is also an 'In Stock' model. This is literally a 'yes' or 'no' option. Used to dictate whether 'add to bag' function is avaliable on product_detail page. 
+4. Then there's the products model, this takes product name, price & description as well as an image. It also allows selection of a options from the above models. 
+5. There is then the colour model. This had to be a seperate model to products as I wanted to link colour images to colour names. This model asks for details of the colour and then links to the products model to specify which product the colour should show for. 
+6. Finally there is the comments model. This stores comments (called reviews on the site) and links each comment to a product in the product model to dpecify which product the comment should show up on. 
 
 # Features
 ## Existing Features
@@ -170,11 +212,27 @@ I have done the following manual tests based on the user stories based on my thr
 ### Store Owner
 1. As a Store Owner, I would like to add a new product to the site so that I can add to the products currently avaliable. 
     * Throughout the site, user will have the 'Account' Icon at the top of their page. If logged in as a superuser, they will have the option to add products. 
-    * Clicking this will take them to a product management form where they can add products (and colours for products if they need to).
+    * Clicking this will take them to a product management form where they can add products.
     ![User Story Image](/media/readme/ownerstory-add.jpg)
-    * Once they have typed in the details, they just need to press 'add product' and this product will be added. 
+    * Once they have typed in the details, they just need to press 'add product' and this product will be added. (Note, discovered and fixed bug with this whilst doing this test). 
+    ![User Story Image](/media/readme/user-test-oroduct.jpg)
+2. As a store owner, I would like to edit a product so that I can change price/update stock listing. 
+    * User can navigate to either product or product_detail pages. Once there, if logged in as a superuser, they have the option to edit. 
+    * Clicking edit will take them to a form similar to the add product form, but with product detail prefilled. User just needs to change relevant details and submit form.
+3. As a store owner I would like to remove a product no longer avaliable so that I can stop customers attempting to purchase delisted products.
+    * User can navigate to either product or product_detail pages. Once there, if logged in as a superuser, they have the option to delete.
+    * User selects delete button. 
+    * Product is removed from store.  
 
+## Additional Testing
 
+* Html code passed through w3c validator. The only errors returned are those relating to Jinja templating language.
+* CSS code passed throgh w3c Jigsaw validator with no errors.
+* Site tested on Google Chrome (phone and laptop), Mozilla Firefox (laptop) & Safari (Phone & Ipad) browsers
+* I've tested the site on a number of devices such as my laptop, my second (larger)monitor, an iPhone 12 mini and a much larger Oppo x2 neo phone.
+* I've spent a lot of time repeatedly using the various functions accross the site and have fixed various issues (e.g as noted above, error in submitting add products form) to make sure they work as well as possible.
+* I've made test Stripe purchases and confirmed webhooks are working. 
+![Webhook](/media/readme/webhook.jpg)
 
 
 ## Known Bugs
@@ -185,10 +243,34 @@ I discussed with tutor support who talked through how complex this would make th
 The bag only displays the specified area of the product, but it increases appropriatley if area of item is already in bag or adds a seperate item if it is not. 
     * Note though, I did leave the colour functionality on the product detail page and make it a required field. Honestly, I was just really happy with the image changing feature on this and 
     wanted to leave it in. 
+* Previously mentioned add colour function does not crash site, but only returns unsuccessful.
 * Issues with toasts. On some screens, toasts stretch accross page, I tried various styling solutions but could not fix this in time. Additionally, could not get dismiss button to work so removed this. 
 * A number of small visual bugs, primarily regarding responsivity on mobile screens when viewed horizontally. 
 
 # Deployment
+My website has been deployed via Heroku using Postgres as database and using Amazon Web services to host images and static files. Heroku has been linked to my Github Repository for this project and auto deploys the code based on my latest commit. 
+In order to deploy the project in this way I took the following steps: 
+
+1. Created Github Repository
+2. Created requirements.txt file & procfile in Gitpod workspace in order to tell Heroku what dependencies my project has.
+
+3. Logged in to Heroku & created a new app. 
+3. In my settings.py file, enabled project to use AWS for static files.
+4. Signed up to Amazon Web services. 
+5. Selected S3, created bucket and enabled read permissions. 
+4. Selected 'Deploy' in Heroku navbar. 
+5. Chose 'Github' in deployment method. 
+6. Searched for my project's Github repository in the repository search box. Selected correct repository. 
+7. In same navbar I selected 'Deploy', selected 'Settings'. 
+8. On this page selected 'Reveal Config Vars', this brings up fields to input key & value for config vars. 
+9. Input the keys for AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, DATABASE_URL, EMAIL_HOST_PASS, EMAIL_HOST_USER, SECRET_KEY, STRIPE_PUBLIC_KEY, STRIPE_SECRET_KEY, 
+STRIPE_WH_SECRET and USE_AWS as well as corresponding values. 
+10. Went back to 'Deploy', scorlled down to 'Enable Automatic Deployment' and clicked this. 
+11. Heroku then built the application and provided a link to i
+
+### Clone project
+* To clone this project, user would need to access github repository, clock 'Gitpod' button in top corner (if installed), once workspace has been set up install requirements in txtfile so workspace runs properley 
+and then follow above steps for deployment. 
 
 
 # Credits

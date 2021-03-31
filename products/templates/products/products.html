@@ -34,7 +34,7 @@
                         <h4 class="card-title">
                         <a href="{% url 'product_detail' product.id %}" class="page-title">{{ product.name }}</a>
                         </h4>
-                        <h5 class="page-title">£{{ product.price }} M²</h5>
+                        <h5 class="page-title">£{{ product.price }}{% if product.category.name == 'carpets' or product.category.name == 'vinyl' or product.category.name == 'laminate'%}M²{% endif %}</h5>
                     </div>
                     <p class="card-text card-details">
                         {% if product.category %}

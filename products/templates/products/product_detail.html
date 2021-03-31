@@ -60,7 +60,7 @@
                             </div>
                             <div class="col-lg-8">
                                 <h3 class="card-title">{{ product.name }}</h3>
-                                <h4>£<span id="price">{{ product.price }}</span>M²</h4>
+                                <h4>£<span id="price">{{ product.price }}</span>{% if product.category.name == 'carpets' or product.category.name == 'vinyl' or product.category.name == 'laminate'%}M²{% endif %}</h4>
                                 <h6>
                                     {% if request.user.is_superuser %}
                                         <a href="{% url 'edit_product' product.id %}" class="text-info">Edit</a> 
