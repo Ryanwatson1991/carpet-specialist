@@ -142,7 +142,7 @@ def add_product(request):
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            product = form.save()
             messages.success(request, 'Successfully added product!')
             return redirect(reverse('product_detail', args=[product.id]))
         else:
@@ -154,7 +154,7 @@ def add_product(request):
     if request.method == 'POST':
         form2 = ColourForm(request.POST, request.FILES)
         if form2.is_valid():
-            form2.save()
+            colour = form2.save()
             messages.success(request, 'Successfully added product!')
             return redirect(reverse('add_product'))
         else:

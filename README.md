@@ -12,6 +12,17 @@ so that this can become a new source of income.
 
 # UX
 
+## User Stories
+
+The user stories for this site focus on three main user types:
+
+* Customer - A first time or relativley casual customer, someone likley buying a carpet for their home. 
+* Regular customer - Someone who uses the site regularly, likley someone who works in the carpet fitting business who regularly needs to purchase supplies. 
+* Store Owner - Probably Alex Gibb, needs to be able to ammend site details in a simple way. 
+
+I have detailed my user stories [here](/media/readme/userstories.xlsx)
+
+
 
 ## Wireframes
 Pdf's of my initial wireframes are linked below: 
@@ -91,8 +102,80 @@ These include:
 # Testing
 ## Testing User Stories outlines in UX section
 
+I have done the following manual tests based on the user stories based on my three user types outlined in the previously linked spreadsheet. 
+([Avaliable here]([here](/media/readme/userstories.xlsx)))
 
-#
+### Customer user goals
+
+1. As a customer, I would like to view all avaliable products so I can browse the varoisu flooring options on offer. 
+    * On entering the site, user is welcomed by logo, navbar with various filtering oprtions, a searchbar and also a masthead image. 
+    * The simplest way to view all products is to scroll down to the masthead image and press the 'Shop Now' button. 
+    ![HUser Story Image](/media/readme/userstory1-landingpage.jpg)
+    * On clicking this, user is taken to a list of all products (of course, there are various filtering options detailed below)
+    ![User Story Image](/media/readme/userstory1-products.jpg)
+
+2. As a customer, I would like to narrow down my search results to just one type of flooring (e.g. laminate), so I can view and select from only the products that suit my needs. 
+    * On entering the site, user can clearly see navigation options. If user clicks 'Laminate' they will be greeted with a dropdown menu
+    ![User Story Image](/media/readme/userstory2-laminate.jpg)
+    * User is given a list of options. Do they want to see all laminate? Filter based on style or filter based on manufacturer 
+    (Worth noting, not all products specify a manufacturer, so clicking 'Balterio Laminate Flooring' won't just return all laminate)
+    On choosing an option, user will see only products that matchselected filter
+3. As a customer, I would like to search the avaliable products so that I can filter out those that don't
+ match what I'm looking for and view only the products relevant to my needs.
+    * On entering the site, user is greeted by a header that very clearly displays a searchbar (This appears the same accross the site, so user can cleary follow this proccess anywhere on the site)
+    * User simply needs to type in their search criteria...
+    ![User Story Image](/media/readme/userstory3-search.jpg)
+    * ...Click 'search' (or press 'enter).... 
+    * ...And they will be returned a page with relevant products
+    ![User Story Image](/media/readme/userstory3-results.jpg)
+4. As a customer, I would like to add a product to my shopping bag and visit the checkout page. 
+    * After following the relevant steps from the previous three user stories, user will be on the products page and have a list of products based on their criteria. 
+    * On selecting one of the products, user will be greeter with the product_detail age for selected product. 
+        ![User Story Image](/media/readme/userstory4-product-detail.jpg)
+    * If, as above, user has selected a product that has a category of 'Accessories' or 'Underlay', User simply needs to specify quantity and press 'Add to bag'.
+    * If, however, user has selected a product with category of 'carpets', 'vinyl' or 'laminate', user will be prompted to select a colour, length and width. 
+    ![User Story Image](/media/readme/userstory4-price-calc.jpg)
+    * User enters these fields (they are required so form will not submit if these fields are not there) and total product price is calculated by multiplying carpet width, carpet length and product price(per m2).
+    * After this, user can press 'add to bag' and product will be added to their bag. 
+    * If products of any category are added to the bag, user will have this confirmed by a toast in the top corner.
+    ![User Story Image](/media/readme/userstory4-product-added.jpg)
+    * From here, user can then click the shopping bag button. This will take them to the shopping bag page where they can confirm what they want to purchase and remove if nescessary. 
+    ![User Story Image](/media/readme/userstory4-bag.jpg)
+    * After confirming details and checking total, customer can click 'Checkout' and will be taken to the checkout page. 
+5. As a customer, I would like to purchase a product/multiple products of different types so that I can recieve my desired product(s)
+    * After following the steps in previous story and confirming order details are correct, customer will be on checkout page. 
+    ![User Story Image](/media/readme/userstory5-checkout.jpg)
+    * After doing one final check their order is correct, user can then enter their delivery details and card details, press complete order and (assuming card details are correct)
+    they will be greeted with an order confirmation.
+     ![User Story Image](/media/readme/userstory5-success.jpg)
+
+### Regular Customer User Goals
+
+1. As a regular customer, I would like to bookmark a product so that I can easily find it later
+    * After navigating to product detail page as details in previous user stories. Customer can click the little 'heart' icon. 
+    ![User Story Image](/media/readme/userstory6-fave.jpg)
+    * The heart icon will become a solid heart icon to signify that this is in favourites. User will also get a nitification to say the product is added to their favouites. 
+    ![User Story Image](/media/readme/userstory6-success.jpg)
+    * User can them click the account button, select 'My profile' and they will be taken to their profile page which (by default) will show any items in their favourites.
+    ![User Story Image](/media/readme/userstory6-favourites.jpg)
+2. As a regular customer, I would like to view my profile so that I can view my order history, favourites and delivery information. 
+    * After navigating to profile page as in previous user story, User has three options and can toggle between all three.   
+        * 'Favourites' -
+            As seen above, this will display user favourites.
+        * 'Delivery info' -
+            This will display the users delivery info if they chose to save it on product page. Can also be updated here.
+        * 'Order history' -
+            This will show users details of all their past orders. 
+
+### Store Owner
+1. As a Store Owner, I would like to add a new product to the site so that I can add to the products currently avaliable. 
+    * Throughout the site, user will have the 'Account' Icon at the top of their page. If logged in as a superuser, they will have the option to add products. 
+    * Clicking this will take them to a product management form where they can add products (and colours for products if they need to).
+    ![User Story Image](/media/readme/ownerstory-add.jpg)
+    * Once they have typed in the details, they just need to press 'add product' and this product will be added. 
+
+
+
 
 ## Known Bugs
 * The key bug is that although a colour is required on the product detail screen, this detail is not passed through to the shopping bag any further. I spent a lot of time discussing with 
@@ -132,18 +215,18 @@ The bag only displays the specified area of the product, but it increases approp
     * Comment/review functionality
         * Primarily followed [this](https://www.youtube.com/watch?v=pNVgLDKrK40), but also [this](https://www.youtube.com/watch?v=OuOB9ADT_bo&list=PLCC34OHNcOtr025c1kHSPrnP18YPB-NFi&index=36). 
     * Favourites Functionality
-        * Primarily followed this[this](https://www.youtube.com/watch?v=1XiJvIuvqhs) and also (this)[https://www.youtube.com/watch?v=OgA0TTKAtqQ&list=PLOLrQ9Pn6caxY4Q1U9RjO1bulQp5NDYS_&index=8]
+        * Primarily followed this[this](https://www.youtube.com/watch?v=1XiJvIuvqhs) and also [this](https://www.youtube.com/watch?v=OgA0TTKAtqQ&list=PLOLrQ9Pn6caxY4Q1U9RjO1bulQp5NDYS_&index=8)
 
 ## Content
 * All static content was written by me (but relied heavily on code institute tutorials)
-* The basic functionalities accross the site are based on that found on (OnlineCarpets)[https://www.onlinecarpets.co.uk/carpets.html], product images and details were also taken from this site. 
+* The basic functionalities accross the site are based on that found on [OnlineCarpets](https://www.onlinecarpets.co.uk/carpets.html), product images and details were also taken from this site. 
 
 ## Media 
-* Masthead image comees from Pexels.com artist[Kayley Dlugos](https://www.pexels.com/photo/window-shadow-on-wall-and-floor-of-modern-room-5872378/) 
+* Masthead image comees from Pexels.com artist [Kayley Dlugos](https://www.pexels.com/photo/window-shadow-on-wall-and-floor-of-modern-room-5872378/) 
 * Logo designed using was provided by Alex Gibb (no artist credit)
 
 ## Acknowledgements
 * Code Institute Mentor Gerard McBride - for providing support throughout
 * Code Institute Tutor Support - for also providing support throughout
 * Websites used for design inspiration:
-    * (OnlineCarpets)[https://www.onlinecarpets.co.uk/carpets.html]
+    * [OnlineCarpets](https://www.onlinecarpets.co.uk/carpets.html)
